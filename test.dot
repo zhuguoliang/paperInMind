@@ -1,0 +1,2816 @@
+digraph G {
+"USENIX"->"0";
+"0"->"Computer Systems Research in the Post-Vi
+rtualization EraEd Bugnion, École Polyt
+echnique Fédérale de Lausanne (EPFL)";
+"0"->"Ed Bugnion, École Polytechnique Fédér
+ale de Lausanne (EPFL)Prof. Edouard Bugn
+ion joined EPFL in 2012, where his focus
+ is on datacenter systems. He is also th
+e academic co-director of the Swiss Data
+ Science Center and currently serves as 
+the Vice- President for Information Syst
+ems at EPFL.Together with his colleagues
+, Bugnion received the ACM Software Syst
+em Award for VMware in 2009. His paper o
+n “Disco” was entered into the ACM S
+IGOPS Hall of Fame Award in 2008. He has
+ received Best Paper Awards from both SO
+SP and OSDI.Together with Jason Nieh and
+ Dan Tsafrir, he recently published his 
+first textbook on “hardware and softwa
+re support for virtualization.”";
+"0"->"The evolution of computing technology ha
+s led to the centralization into mega-co
+mputing resources, the disruption of ent
+ire industries through software services
+, substantial concerns around security, 
+privacy, and surveillance, and enabled t
+he recent explosion of data science and 
+deep learning.   In all cases, computer 
+systems (and computer systems research) 
+provides a technical foundation to reaso
+n about challenges and trends.This talk 
+will rely on examples from past and curr
+ent research and put them in the context
+ of the challenges of the day.  It will 
+revisit virtualization from a historical
+ perspective and extend to my recent foc
+us on microsecond-scale computing.";
+"USENIX"->"1";
+"1"->"Ed Bugnion, École Polytechnique Fédér
+ale de Lausanne (EPFL)";
+"1"->"Prof. Edouard Bugnion joined EPFL in 201
+2, where his focus is on datacenter syst
+ems. He is also the academic co-director
+ of the Swiss Data Science Center and cu
+rrently serves as the Vice- President fo
+r Information Systems at EPFL.Together w
+ith his colleagues, Bugnion received the
+ ACM Software System Award for VMware in
+ 2009. His paper on “Disco” was ente
+red into the ACM SIGOPS Hall of Fame Awa
+rd in 2008. He has received Best Paper A
+wards from both SOSP and OSDI.Together w
+ith Jason Nieh and Dan Tsafrir, he recen
+tly published his first textbook on “h
+ardware and software support for virtual
+ization.”";
+"1"->"";
+"USENIX"->"2";
+"2"->"Lock-in-Pop: Securing Privileged Operati
+ng System Kernels by Keeping on the Beat
+en Path";
+"2"->"Yiwen Li, Brendan Dolan-Gavitt, Sam Webe
+r, and Justin Cappos, New York Universit
+y";
+"2"->"";
+"USENIX"->"3";
+"3"->"Fast and Precise Retrieval of Forward an
+d Back Porting Information for Linux Dev
+ice Drivers";
+"3"->"Julia Lawall, Derek Palinski, Lukas Gnir
+ke, and Gilles Muller, Sorbonne Universi
+tés/UPMC/Inria/LIP6";
+"3"->"Porting Linux device drivers to target m
+ore recent and older Linux kernel versio
+ns to compensate for the everchanging ke
+rnel interface is a continual problem fo
+r Linux device driver developers. Acquir
+ing information about interface changes 
+is a necessary, but tedious and error pr
+one, part of this task. In this paper, w
+e propose two tools, Prequel and gcc-red
+uce, to help the developer collect the n
+eeded information. Prequel provides lang
+uage support for querying git commit his
+tories, while gcc-reduce translates erro
+r messages produced by compiling a drive
+r with a target kernel into appropriate 
+Prequel queries. We have used our approa
+ch in porting 33 device driver files ove
+r up to 3 years of Linux kernel history,
+ amounting to hundreds of thousands of c
+ommits. In these experiments, for 3/4 of
+ the porting issues, our approach highli
+ghted commits that enabled solving the p
+orting task. For many porting issues, ou
+r approach retrieves relevant commits in
+ 30 seconds or less.";
+"USENIX"->"4";
+"4"->"Optimizing the TLB Shootdown Algorithm w
+ith Page Access Tracking";
+"4"->"Nadav Amit, VMware Research";
+"4"->"The operating system is tasked with main
+taining the coherency of per-core TLBs, 
+necessitating costly synchronization ope
+rations, notably to invalidate stale map
+pings. As core-counts increase, the over
+head of TLB synchronization likewise inc
+reases and hinders scalability, whereas 
+existing software optimizations that att
+empt to alleviate the problem (like batc
+hing) are lacking.We address this proble
+m by revising the TLB synchronization su
+bsystem. We introduce several techniques
+ that detect cases whereby soon-to-be in
+validated mappings are cached by only on
+e TLB or not cached at all, allowing us 
+to entirely avoid the cost of synchroniz
+ation. In contrast to existing optimizat
+ions, our approach leverages hardware pa
+ge access tracking. We implement our tec
+hniques in Linux and find that they redu
+ce the number of TLB invalidations by up
+ to 98% on average and thus improve perf
+ormance by up to 78%. Evaluations show t
+hat while our techniques may introduce o
+verheads of up to 9% when memory mapping
+s are never removed, these overheads can
+ be avoided by simple hardware enhanceme
+nts.";
+"USENIX"->"5";
+"5"->"Falcon: Scaling IO Performance in Multi-
+SSD Volumes";
+"5"->"Pradeep Kumar and H. Howie Huang, The Ge
+orge Washington University";
+"5"->"With the high throughput offered by soli
+d-state drives (SSDs), multi-SSD volumes
+ have become an attractive storage solut
+ion for big data applications. Unfortuna
+tely, the IO stack in current operating 
+systems imposes a number of volume-level
+ limitations, such as per-volume based I
+O processing in the block layer, single 
+flush thread per volume for buffer cache
+ management, locks for parallel IOs on a
+ file, all of which lower the performanc
+e that could otherwise be achieved on mu
+lti- SSD volumes. To address this proble
+m, we propose a new design of per-drive 
+IO processing that separates two key fun
+ctionalities of IO batching and IO servi
+ng in the IO stack. Specifically, we des
+ign and develop Falcon that consists of 
+two major components: Falcon IO Manageme
+nt Layer that batches the incoming IOs a
+t the volume level, and Falcon Block Lay
+er that parallelizes IO serving on the S
+SD level in a new block layer. Compared 
+to the current practice, Falcon signific
+antly speeds up direct random file read 
+and write on an 8-SSD volume by 1.77× a
+nd 1.59× respectively, and also shows s
+trong scalability across different numbe
+rs of drives and various storage control
+lers. In addition, Falcon improves the p
+erformance of a variety of applications 
+by 1.69×.";
+"USENIX"->"6";
+"6"->"deTector: a Topology-aware Monitoring Sy
+stem for Data Center Networks";
+"6"->"Yanghua Peng, The University of Hong Kon
+g; Ji Yang, Xi'an Jiaotong University; C
+huan Wu, The University of Hong Kong; Ch
+uanxiong Guo, Microsoft Research; Chengc
+hen Hu, Xi'an Jiaotong University; Zongp
+eng Li, University of Calgary";
+"6"->"Troubleshooting network performance issu
+es is a challenging task especially in l
+arge-scale data center networks. This pa
+per presents deTector, a network monitor
+ing system that is able to detect and lo
+calize network failures (manifested main
+ly by packet losses) accurately in near 
+real time while minimizing the monitorin
+g overhead. deTector achieves this goal 
+by tightly coupling detection and locali
+zation and carefully selecting probe pat
+hs so that packet losses can be localize
+d only according to end-to-end observati
+ons without the help of additional tools
+ (e.g., tracert). In particular, we quan
+tify the desirable properties of the mat
+rix of probe paths, i.e., coverage and i
+dentifiability, and leverage an efficien
+t greedy algorithm with a good approxima
+tion ratio and fast speed to select prob
+e paths. We also propose a loss localiza
+tion method according to loss patterns i
+n a data center network. Our algorithm a
+nalysis, experimental evaluation on a Fa
+ttree testbed and supplementary large-sc
+ale simulation validate the scalability,
+ feasibility and effectiveness of deTect
+or.";
+"USENIX"->"7";
+"7"->"Pricing Intra-Datacenter Networks with O
+ver-Committed Bandwidth Guarantee";
+"7"->"Jian Guo, Fangming Liu, and Tao Wang, Ke
+y Laboratory of Services Computing Techn
+ology and System, Ministry of Education,
+ School of Computer Science and Technolo
+gy, Huazhong University of Science and T
+echnology; John C.S. Lui, The Chinese Un
+iversity of Hong Kong";
+"7"->"Current IaaS clouds provide performance 
+guarantee on CPU and memory but no quant
+itative network performance for VM insta
+nces. Our measurements from three produc
+tion IaaS clouds show that for the VMs w
+ith same CPU and memory, or similar pric
+ing, the difference in bandwidth perform
+ance can be as much as 16×, which revea
+ls a severe price-performance anomaly du
+e to a lack of pricing for bandwidth gua
+rantee. Considering the low network util
+ization in cloud-scale datacenters, we a
+ddress this by presenting SoftBW, a syst
+em that enables pricing bandwidth with o
+ver commitment on bandwidth guarantee. S
+oftBW leverages usage-based charging to 
+guarantee price-performance consistency 
+among tenants, and implements a fulfillm
+ent based scheduling to provide bandwidt
+h/fairness guarantee under bandwidth ove
+r commitment. Both testbed experiments a
+nd large-scale simulation results valida
+te SoftBW’s ability of providing effic
+ient bandwidth guarantee, and show that 
+by using bandwidth over commitment, Soft
+BW increases 3.9× network utilization w
+hile incurring less than 5% guarantee fa
+ilure.";
+"USENIX"->"8";
+"8"->"Unobtrusive Deferred Update Stabilizatio
+n for Efficient Geo-Replication";
+"8"->"Chathuri Gunawardhana, Manuel Bravo, and
+ Luis Rodrigues, University of Lisbon";
+"8"->"In this paper, we propose a novel approa
+ch to manage the throughput vs visibilit
+y latency tradeoff that emerges when enf
+orcing causal consistency in geo-replica
+ted systems. Our approach consists in al
+lowing full concurrency when processing 
+local updates and using a deferred local
+ serialisation procedure before shipping
+ updates to remote datacenters. This str
+ategy allows to implement inexpensive me
+chanisms to ensure system consistency re
+quirements while avoiding intrusive effe
+cts on update operations, a major perfor
+mance limitation of previous systems. We
+ have implemented our approach as a vari
+ant of Riak KV. Our evaluation shows tha
+t we outperform sequencer-based approach
+es by almost an order of magnitude in th
+e maximum achievable throughput. Further
+more, unlike previous sequencer-free sol
+utions, our approach reaches nearly opti
+mal remote update visibility latencies w
+ithout limiting throughput.";
+"USENIX"->"9";
+"9"->"Don't cry over spilled records: Memory e
+lasticity of data-parallel applications 
+and its application to cluster schedulin
+g";
+"9"->"Călin Iorgulescu and Florin Dinu, EPFL;
+ Aunn Raza, NUST Pakistan; Wajih Ul Hass
+an, UIUC; Willy Zwaenepoel, EPFL";
+"9"->"Understanding the performance of data-pa
+rallel workloads when resource-constrain
+ed has significant practical importance 
+but unfortunately has received only limi
+ted attention. This paper identifies, qu
+antifies and demonstrates memory elastic
+ity, an intrinsic property of data-paral
+lel tasks. Memory elasticity allows task
+s to run with significantly less memory 
+than they would ideally need while only 
+paying a moderate performance penalty. F
+or example, we find that given as little
+ as 10% of ideal memory, PageRank and Nu
+tchIndexing Hadoop reducers become only 
+1.2x/1.75x and 1.08x slower. We show tha
+t memory elasticity is prevalent in the 
+Hadoop, Spark, Tez and Flink frameworks.
+ We also show that memory elasticity is 
+predictable in nature by building simple
+ models for Hadoop and extending them to
+ Tez and Spark.To demonstrate the potent
+ial benefits of leveraging memory elasti
+city, this paper further explores its ap
+plication to cluster scheduling. In this
+ setting, we observe that the resource v
+s. time trade-off enabled by memory elas
+ticity becomes a task queuing time vs. t
+ask runtime trade-off. Tasks may complet
+e faster when scheduled with less memory
+ because their waiting time is reduced. 
+We show that a scheduler can turn this t
+ask-level tradeoff into improved job com
+pletion time and cluster-wide memory uti
+lization. We have integrated memory elas
+ticity into Apache YARN. We show gains o
+f up to 60% in average job completion ti
+me on a 50-node Hadoop cluster. Extensiv
+e simulations show similar improvements 
+over a large number of scenarios.";
+"USENIX"->"10";
+"10"->"Popularity Prediction of Facebook Videos
+ for Higher Quality Streaming";
+"10"->"Linpeng Tang, Princeton University; Qi H
+uang and Amit Puntambekar, Facebook; Ymi
+r Vigfusson, Emory University & Reykjavi
+k University; Wyatt Lloyd, University of
+ Southern California & Facebook; Kai Li,
+ Princeton University";
+"10"->"Streaming video algorithms dynamically s
+elect between different versions of a vi
+deo to deliver the highest quality versi
+on that can be viewed without buffering 
+over the client’s connection. To impro
+ve the quality for viewers, the backing 
+video service can generate more and/or b
+etter versions, but at a significant com
+putational overhead. Processing all vide
+os uploaded to Facebook in the most inte
+nsive way would require a prohibitively 
+large cluster. Facebook’s video popula
+rity distribution is highly skewed, howe
+ver, with analysis on sampled videos sho
+wing 1% of them accounting for 83% of th
+e total watch time by users. Thus, if we
+ can predict the future popularity of vi
+deos, we can focus the intensive process
+ing on those videos that improve the qua
+lity of the most watch time.To address t
+his challenge, we designed CHESS, the fi
+rst popularity prediction algorithm that
+ is both scalable and accurate. CHESS is
+ scalable because, unlike the state-ofth
+e- art approaches, it requires only cons
+tant space per video, enabling it to han
+dle Facebook’s video workload. CHESS i
+s accurate because it delivers superior 
+predictions using a combination of histo
+rical access patterns with social signal
+s in a unified online learning framework
+. We have built a video prediction servi
+ce, CHESSVPS, using our new algorithm th
+at can handle Facebook’s workload with
+ only four machines. We find that re-enc
+oding popular videos predicted by CHESSV
+PS enables a higher percentage of total 
+user watch time to benefit from intensiv
+e encoding, with less overhead than a re
+cent production heuristic, e.g., 80% of 
+watch time with one-third as much overhe
+ad.";
+"USENIX"->"11";
+"11"->"Squeezing out All the Value of Loaded Da
+ta: An Out-of-core Graph Processing Syst
+em with Reduced Disk I/O";
+"11"->"";
+"11"->"The current primary concern of out-of-co
+re graph processing systems is improving
+ disk I/O locality, which leads to certa
+in restrictions on their programming and
+ execution models. Although improving th
+e locality, these constraints also restr
+ict the expressiveness. As a result, onl
+y sub-optimal algorithms are supported f
+or many kinds of applications. When comp
+ared with the optimal algorithms, these 
+supported algorithms typically incur seq
+uential, but much larger, amount of disk
+ I/O.In this paper, we explore a fundame
+ntally different tradeoff: less total am
+ount of I/O rather than better locality.
+ We show that out-of-core graph processi
+ng systems uniquely provide the opportun
+ities to lift the restrictions of the pr
+ogramming and execution model (e.g., pro
+cess each loaded block at most once, nei
+ghborhood constraint) in a feasible mann
+er, which enable efficient algorithms th
+at require drastically less number of it
+erations. To demonstrate the ideas, we b
+uild CLIP, a novel out-ofcore graph proc
+essing system designed with the principl
+e of “squeezing out all the value of l
+oaded data”. With the more expressive 
+programming model and more flexible exec
+ution, CLIP enables more efficient algor
+ithms that require much less amount of t
+otal disk I/O. Our experiments show that
+ the algorithms that can be only impleme
+nted in CLIP are much faster than the or
+iginal disk-locality-optimized algorithm
+s in many real-world cases (up to tens o
+r even thousands of times speedup).";
+"USENIX"->"12";
+"12"->"Ending the Anomaly: Achieving Low Latenc
+y and Airtime Fairness in WiFi";
+"12"->"Toke Høiland-Jørgensen, Karlstad Unive
+rsity; Michał Kazior, Tieto Poland; Dav
+e Täht, TekLibre; Per Hurtig and Anna B
+runstrom, Karlstad University";
+"12"->"With more devices connected, delays and 
+jitter at the WiFi hop become more preva
+lent, and correct functioning during net
+work congestion becomes more important. 
+However, two important performance issue
+s prevent modern WiFi from reaching its 
+potential: increased latency under load 
+caused by excessive queueing (i.e. buffe
+rbloat) and the 802.11 performance anoma
+ly.To remedy these issues, we present a 
+novel two-part solution. We design a new
+ queueing scheme that eliminates bufferb
+loat in the wireless setting. Leveraging
+ this queueing scheme, we then design an
+ airtime fairness scheduler that operate
+s at the access point and doesn’t requ
+ire any changes to clients.We evaluate o
+ur solution using both a theoretical mod
+el and experiments in a testbed environm
+ent, formulating a suitable analytical m
+odel in the process. We show that our so
+lution achieves an order of magnitude re
+duction in latency under load, large imp
+rovements in multi-station throughput, a
+nd nearly perfect airtime fairness for b
+oth TCP and downstream UDP traffic. Furt
+her experiments with application traffic
+ confirm that the solution provides sign
+ificant performance gains for real-world
+ traffic.We develop a production quality
+ implementation of our solution in the L
+inux kernel, the platform powering most 
+access points outside of the managed ent
+erprise setting. The implementation has 
+been accepted into the mainline kernel d
+istribution, making it available for dep
+loyment on billions of devices running L
+inux today.";
+"USENIX"->"13";
+"13"->"Persona: A High-Performance Bioinformati
+cs Framework";
+"13"->"Stuart Byma and Sam Whitlock, EPFL; Laur
+a Flueratoru, University Politehnica of 
+Bucharest; Ethan Tseng, CMU; Christos Ko
+zyrakis, Stanford University; Edouard Bu
+gnion and James Larus, EPFL";
+"13"->"Next-generation genome sequencing techno
+logy has reached a point at which it is 
+becoming cost-effective to sequence all 
+patients. Biobanks and researchers are f
+aced with an oncoming deluge of genomic 
+data, whose processing requires new and 
+scalable bioinformatics architectures an
+d systems. Processing raw genetic sequen
+ce data is computationally expensive and
+ datasets are large. Current software sy
+stems can require many hours to process 
+a single genome and generally run only o
+n a single computer. Common file formats
+ are monolithic and row-oriented, a barr
+ier to distributed computation.To addres
+s these challenges, we built Persona, a 
+cluster-scale, high-throughput bioinform
+atics framework. Persona currently suppo
+rts paired-read alignment, sorting, and 
+duplicate marking using well-known algor
+ithms and techniques. Persona can signif
+icantly reduce end-to-end processing tim
+es for bioinformatics computations. A ne
+w Aggregate Genomic Data (AGD) format un
+ifies sample data and analysis results, 
+while enabling efficient distributed com
+putation and I/O.In a case study on sequ
+ence alignment, Persona sustains 1.353 g
+igabases aligned per second with 101 bas
+e pair reads on a 32-node cluster and ca
+n align a full genome in ~16.7 seconds u
+sing the SNAP algorithm. Our results dem
+onstrate that: (1) alignment computation
+ with Persona scales linearly across ser
+vers with no measurable completion-time 
+imbalance and negligible framework overh
+eads; (2) on a single server, sorting wi
+th Persona and AGD is up to 2.3× faster
+ than commonly used tools, while duplica
+te marking is 3× faster; (3) with AGD, 
+a 7 node COTS network storage system can
+ service up to 60 alignment compute node
+s; (4) server cost dominates for a balan
+ced system running Persona, while long-t
+erm data storage dwarfs the cost of comp
+utation.";
+"USENIX"->"14";
+"14"->"SPIN: Seamless Operating System Integrat
+ion of Peer-to-Peer DMA Between SSDs and
+ GPUs";
+"14"->"Shai Bergman and Tanya Brokhman, Techni
+on; Tzachi Cohen, unaffiliated; Mark Si
+lberstein, Technion";
+"14"->"Recent GPUs enable Peer-to-Peer Direct M
+emory Access (P2P) from fast peripheral 
+devices like NVMe SSDs to exclude the CP
+U from the data path between them for ef
+ficiency. Unfortunately, using P2P to ac
+cess files is challenging because of the
+ subtleties of low-level nonstandard int
+erfaces, which bypass the OS file I/O la
+yers and may hurt system performance.SPI
+N integrates P2P into the standard OS fi
+le I/O stack, dynamically activating P2P
+ where appropriate, transparently to the
+ user. It combines P2P with page cache a
+ccesses, re-enables read-ahead for seque
+ntial reads, all while maintaining stand
+ard POSIX FS consistency, portability ac
+ross GPUs and SSDs, and compatibility wi
+th virtual block devices such as softwar
+e RAID.We evaluate SPIN on NVIDIA and AM
+D GPUs using standard file I/O benchmark
+s, application traces and end-to-end exp
+eriments. SPIN achieves significant perf
+ormance speedups across a wide range of 
+workloads, exceeding P2P throughput by u
+p to an order of magnitude. It also boos
+ts the performance of an aerial imagery 
+rendering application by 2:6× by dynami
+cally adapting to its input-dependent fi
+le access pattern, and enables 3:3× hig
+her throughput for a GPU-accelerated log
+ server.";
+"USENIX"->"15";
+"15"->"Poseidon: An Efficient Communication Arc
+hitecture for Distributed Deep Learning 
+on GPU Clusters";
+"15"->"Hao Zhang, Carnegie Mellon University; Z
+eyu Zheng, Petuum Inc.; Shizhen Xu and W
+ei Dai, Carnegie Mellon University; Qiro
+ng Ho, Petuum Inc.; Xiaodan Liang, Zhiti
+ng Hu, Jinliang Wei, and Pengtao Xie, Ca
+rnegie Mellon University; Eric P. Xing, 
+Petuum Inc.";
+"15"->"Deep learning models can take weeks to t
+rain on a single GPU-equipped machine, n
+ecessitating scaling out DL training to 
+a GPU-cluster. However, current distribu
+ted DL implementations can scale poorly 
+due to substantial parameter synchroniza
+tion over the network, because the high 
+throughput of GPUs allows more data batc
+hes to be processed per unit time than C
+PUs, leading to more frequent network sy
+nchronization. We present Poseidon, an e
+fficient communication architecture for 
+distributed DL on GPUs. Poseidon exploit
+s the layered model structures in DL pro
+grams to overlap communication and compu
+tation, reducing bursty network communic
+ation. Moreover, Poseidon uses a hybrid 
+communication scheme that optimizes the 
+number of bytes required to synchronize 
+each layer, according to layer propertie
+s and the number of machines. We show th
+at Poseidon is applicable to different D
+L frameworks by plugging Poseidon into C
+affe and TensorFlow. We show that Poseid
+on enables Caffe and TensorFlow to achie
+ve 15.5x speed-up on 16 single-GPU machi
+nes, even with limited bandwidth (10GbE)
+ and the challenging VGG19-22K network f
+or image classification. Moreover, Posei
+don-enabled TensorFlow achieves 31.5x sp
+eed-up with 32 single-GPU machines on In
+ception-V3, a 50% improvement over the o
+pen-source TensorFlow (20x speed-up).";
+"USENIX"->"16";
+"16"->"Garaph: Efficient GPU-accelerated Graph 
+Processing on a Single Machine with Bala
+nced Replication";
+"16"->"Lingxiao Ma, Zhi Yang, and Han Chen, Com
+puter Science Department, Peking Univers
+ity, Beijing, China; Jilong Xue, Microso
+ft Research, Beijing, China; Yafei Dai, 
+Institute of Big Data Technologies, Shen
+zhen Key Lab for Cloud Computing Technol
+ogy & Applications, School of Electronic
+s and Computer Engineering (SECE), Pekin
+g University, Shenzhen, China";
+"16"->"Recent advances in storage (e.g., DDR4, 
+SSD, NVM) and accelerators (e.g., GPU, X
+eon-Phi, FPGA) provide the opportunity t
+o efficiently process large-scale graphs
+ on a single machine. In this paper, we 
+present Garaph, a GPU-accelerated graph 
+processing system on a single machine wi
+th secondary storage as memory extension
+. Garaph is novel in three ways. First, 
+Garaph proposes a vertex replication deg
+ree customization scheme that maximizes 
+the GPU utilization given vertices’ de
+grees and space constraints. Second, Gar
+aph adopts a balanced edge-based partiti
+on ensuring work balance over CPU thread
+s, and also a hybrid of notify-pull and 
+pull computation models optimized for fa
+st graph processing on the CPU. Third, G
+araph uses a dynamic workload assignment
+ scheme which takes into account both ch
+aracteristics of processing elements and
+ graph algorithms. Our evaluation with s
+ix widely used graph applications on sev
+en real-world graphs shows that Garaph s
+ignificantly outperforms existing state-
+of-art CPU-based and GPU-based graph pro
+cessing systems, getting up to 5.36x spe
+edup over the fastest among them.";
+"USENIX"->"17";
+"17"->"GPU Taint Tracking";
+"17"->"Ari B. Hayes, Rutgers University; Lingda
+ Li, Brookhaven National Laboratory; Moh
+ammad Hedayati, University of Rochester;
+ Jiahuan He and Eddy Z. Zhang, Rutgers U
+niversity; Kai Shen, Google";
+"17"->"Dynamic tainting tracks the influence of
+ certain inputs (taint sources) through 
+execution and it is a powerful tool for 
+information flow analysis and security. 
+Taint tracking has primarily targeted CP
+U program executions. Motivated by recen
+t recognition of information leaking in 
+GPU memory and GPU-resident malware, thi
+s paper presents the first design and pr
+ototype implementation of a taint tracki
+ng system on GPUs. Our design combines a
+ static binary instrumentation with dyna
+mic tainting at runtime. We present new 
+performance optimizations by exploiting 
+unique GPU characteristics—a large por
+tion of instructions on GPU runtime para
+meters and constant memory can be safely
+ eliminated from taint tracking; large G
+PU register file allows fast maintenance
+ of a hot portion of the taint map. Expe
+riments show that these techniques impro
+ved the GPU taint tracking performance b
+y 5 to 20 times for a range of image pro
+cessing, data encryption, and deep learn
+ing applications. We further demonstrate
+ that GPU taint tracking can enable zero
+ing sensitive data to minimize informati
+on leaking as well as identifying and co
+untering GPU-resident malware.";
+"USENIX"->"18";
+"18"->"Optimizing the Design and Implementation
+ of the Linux ARM Hypervisor";
+"18"->"Christoffer Dall, Shih-Wei Li, and Jason
+ Nieh, Columbia University";
+"18"->"Modern hypervisor designs for both ARM a
+nd x86 virtualization rely on running an
+ operating system kernel, the hypervisor
+ OS kernel, to support hypervisor functi
+onality. While x86 hypervisors effective
+ly leverage architectural support to run
+ the kernel, existing ARM hypervisors ma
+p poorly to the virtualization features 
+of the ARM architecture, resulting in wo
+rse performance. We identify the key rea
+son for this problem is the need to mult
+iplex kernel mode state between the hype
+rvisor and virtual machines, which each 
+run their own kernel. To address this pr
+oblem, we take a fundamentally different
+ approach to hypervisor design that runs
+ the hypervisor together with its OS ker
+nel in a separate CPU mode from kernel m
+ode. Using this approach, we redesign KV
+M/ARM to leverage a separate ARM CPU mod
+e for running both the hypervisor and it
+s OS kernel. We show what changes are re
+quired in Linux to implement this on cur
+rent ARM hardware as well as how newer A
+RM architectural support can be used to 
+support this approach without any change
+s to Linux other than to KVM/ARM itself.
+ We show that our redesign and optimizat
+ions can result in an order of magnitude
+ performance improvement for KVM/ARM, an
+d can provide faster performance than x8
+6 on key hypervisor operations. As a res
+ult, many aspects of our design have bee
+n successfully merged into mainline Linu
+x.";
+"USENIX"->"19";
+"19"->"Multi-Hypervisor Virtual Machines: Enabl
+ing an Ecosystem of Hypervisor-level Ser
+vices";
+"19"->"Kartik Gopalan, Rohit Kugve, Hardik Bagd
+i, and Yaohui Hu, Binghamton University;
+ Daniel Williams and Nilton Bila, IBM T.
+J. Watson Research Center";
+"19"->"Public cloud software marketplaces alrea
+dy offer users a wealth of choice in ope
+rating systems, database management syst
+ems, financial software, and virtual net
+working, all deployable and configurable
+ at the click of a button. Unfortunately
+, this level of customization has not ex
+tended to emerging hypervisor-level serv
+ices, partly because traditional virtual
+ machines (VMs) are fully controlled by 
+only one hypervisor at a time. Currently
+, a VM in a cloud platform cannot concur
+rently use hypervisor-level services fro
+m multiple third-parties in a compartmen
+talized manner. We propose the notion of
+ a multi-hypervisor VM, which is an unmo
+dified guest that can simultaneously use
+ services from multiple coresident, but 
+isolated, hypervisors. We present a new 
+virtualization architecture, called Span
+ virtualization, that leverages nesting 
+to allow multiple hypervisors to concurr
+ently control a guest’s memory, virtua
+l CPU, and I/O resources. Our prototype 
+of Span virtualization on the KVM/QEMU p
+latform enables a guest to use services 
+such as introspection, network monitorin
+g, guest mirroring, and hypervisor refre
+sh, with performance comparable to tradi
+tional nested VMs.";
+"USENIX"->"20";
+"20"->"Preemptive, Low Latency Datacenter Sched
+uling via Lightweight Virtualization";
+"20"->"Wei Chen, University of Colorado, Colora
+do Springs; Jia Rao, University of Texas
+ at Arlington; Xiaobo Zhou, University o
+f Colorado, Colorado Springs";
+"20"->"Data centers are evolving to host hetero
+geneous workloads on shared clusters to 
+reduce the operational cost and achieve 
+higher resource utilization. However, it
+ is challenging to schedule heterogeneou
+s workloads with diverse resource requir
+ements and QoS constraints. On the one h
+and, latency-critical jobs need to be sc
+heduled as soon as they are submitted to
+ avoid any queuing delays. On the other 
+hand, best-effort long jobs should be al
+lowed to occupy the cluster when there a
+re idle resources to improve cluster uti
+lization. The challenge lies in how to m
+inimize the queuing delays of short jobs
+ while maximizing cluster utilization. E
+xisting solutions either forcibly kill l
+ong jobs to guarantee low latency for sh
+ort jobs or disable preemption to optimi
+ze utilization. Hybrid approaches with r
+esource reservations have been proposed 
+but need to be tuned for specific worklo
+ads.In this paper, we propose and develo
+p BIG-C, a container-based resource mana
+gement framework for Big Data cluster co
+mputing. The key design is to leverage l
+ightweight virtualization, a.k.a, contai
+ners to make tasks preemptable in cluste
+r scheduling. We devise two types of pre
+emption strategies: immediate and gracef
+ul preemptions and show their effectiven
+ess and tradeoffs with loosely-coupled M
+apReduce workloads as well as iterative,
+ in-memory Spark workloads. Based on the
+ mechanisms for task preemption, we furt
+her develop a preemptive fair share clus
+ter scheduler. We have implemented BIG-C
+ in YARN. Our evaluation with synthetic 
+and production workloads shows that low-
+latency and high utilization can be both
+ attained when scheduling heterogeneous 
+workloads on a contended cluster.";
+"USENIX"->"21";
+"21"->"The RCU-Reader Preemption Problem in VMs";
+"21"->"Aravinda Prasad and K Gopinath, Indian I
+nstitute of Science, Bangalore; Paul E. 
+McKenney, IBM Linux Technology Center, B
+eaverton";
+"21"->"When synchronization primitives such as 
+locking and read-copy update (RCU) execu
+te within virtual machines (VMs), preemp
+tion can cause multi-second latency spik
+es, increasing peak memory footprint and
+ fragmentation inside VMs, which in turn
+ may trigger swapping or VM ballooning. 
+The resulting CPU utilization and memory
+ footprint increases can negate the serv
+er-consolidation benefits of virtualizat
+ion. Although preemption of lock holders
+ in VMs has been well-studied, the corre
+sponding solutions do not apply to RCU d
+ue to its exceedingly lightweight read-s
+ide primitives.This paper presents the f
+irst evaluation of RCU-reader preemption
+ in a virtualized environment. Our evalu
+ation shows 50% increase in the peak mem
+ory footprint and 155% increase in fragm
+entation for a microbenchmark, 23.71% in
+crease in average kernel CPU utilization
+, 2.9× increase in the CPU time to comp
+ute a grace period and 2.18× increase i
+n the average grace period duration for 
+the Postmark benchmark.";
+"USENIX"->"22";
+"22"->"Bunshin: Compositing Security Mechanisms
+ through Diversification";
+"22"->"Meng Xu, Kangjie Lu, Taesoo Kim, and Wen
+ke Lee, Georgia Institute of Technology";
+"22"->"A number of security mechanisms have bee
+n proposed to harden programs written in
+ unsafe languages, each of which mitigat
+es a specific type of memory error. Intu
+itively, enforcing multiple security mec
+hanisms on a target program will improve
+ its overall security. However, this is 
+not yet a viable approach in practice be
+cause the execution slowdown caused by v
+arious security mechanisms is often non-
+linearly accumulated, making the combine
+d protection prohibitively expensive; fu
+rther, most security mechanisms are desi
+gned for independent or isolated uses an
+d thus are often in conflict with each o
+ther, making it impossible to fuse them 
+in a straightforward way.In this paper, 
+we present BUNSHIN, an N-version-based s
+ystem that enables different and even co
+nflicting security mechanisms to be comb
+ined to secure a program while at the sa
+me time reducing the execution slowdown.
+ In particular, we propose an automated 
+mechanism to distribute runtime security
+ checks in multiple program variants in 
+such a way that conflicts between securi
+ty checks are inherently eliminated and 
+execution slowdown is minimized with par
+allel execution. We also present an N-ve
+rsion execution engine to seamlessly syn
+chronize these variants so that all dist
+ributed security checks work together to
+ guarantee the security of a target prog
+ram.";
+"USENIX"->"23";
+"23"->"Glamdring: Automatic Application Partiti
+oning for Intel SGX";
+"23"->"Joshua Lind, Christian Priebe, Divya Mut
+hukumaran, Dan O'Keeffe, Pierre-Louis Au
+blin, and Florian Kelbert, Imperial Coll
+ege London; Tobias Reiher, TU Dresden; D
+avid Goltzsche, TU Braunschweig; David E
+yers, University of Otago; Rudiger Kapit
+za, TU Braunschweig; Christof Fetzer, TU
+ Dresden; Peter Pietzuch, Imperial Colle
+ge London";
+"23"->"Trusted execution support in modern CPUs
+, as offered by Intel SGX enclaves, can 
+protect applications in untrusted enviro
+nments. While prior work has shown that 
+legacy applications can run in their ent
+irety inside enclaves, this results in a
+ large trusted computing base (TCB). Ins
+tead, we explore an approach in which we
+ partition an application and use an enc
+lave to protect only security-sensitive 
+data and functions, thus obtaining a sma
+ller TCB.We describe Glamdring, the firs
+t source-level partitioning framework th
+at secures applications written in C usi
+ng Intel SGX. A developer first annotate
+s security-sensitive application data. G
+lamdring then automatically partitions t
+he application into untrusted and enclav
+e parts: (i) to preserve data confidenti
+ality, Glamdring uses dataflow analysis 
+to identify functions that may be expose
+d to sensitive data; (ii) for data integ
+rity, it uses backward slicing to identi
+fy functions that may affect sensitive d
+ata. Glamdring then places security-sens
+itive functions inside the enclave, and 
+adds runtime checks and cryptographic op
+erations at the enclave boundary to prot
+ect it from attack. Our evaluation of Gl
+amdring with the Memcached store, the Li
+breSSL library, and the Digital Bitbox b
+itcoin wallet shows that it achieves sma
+ll TCB sizes and has acceptable performa
+nce overheads.";
+"USENIX"->"24";
+"24"->"High-Resolution Side Channels for Untrus
+ted Operating Systems";
+"24"->"Marcus Hähnel, TU Dresden, Operating Sy
+stems Group; Weidong Cui and Marcus Pein
+ado, Microsoft Research";
+"24"->"Feature-rich mass-market operating syste
+ms have large trusted computing bases (T
+CBs) and a long history of vulnerabiliti
+es. Systems like Overshadow, InkTag or H
+aven attempt to remove the operating sys
+tem (OS) from the TCB of applications wh
+ile retaining its functionality. However
+, the untrusted OS’s control of most p
+hysical resources puts it in a much bett
+er position to launch side-channel attac
+ks than traditional unprivileged side-ch
+annel attackers. Initial attacks focused
+ on the page-fault channel, demonstratin
+g significant information leakage for th
+ree legacy applications.We present two n
+ew side channels for an untrusted OS whi
+ch use timer interrupts and cache misses
+ to achieve higher temporal and spatial 
+resolution than the page-fault channel. 
+We leverage the untrusted OS’s control
+ over hardware to reduce noise in the si
+de channels to enable successful attacks
+ in just a single run of the target. We 
+demonstrate that our side channels enabl
+e attacks against new SGX applications s
+uch as VC3 that were designed not to tru
+st the OS. We also show a new attack aga
+inst libjpeg that extracts images with t
+wo orders of magnitude more information 
+than the page-fault channel attack.";
+"USENIX"->"25";
+"25"->"Understanding Security Implications of U
+sing Containers in the Cloud";
+"25"->"Byungchul Tak, Kyungpook National Univer
+sity; Canturk Isci, Sastry Duri, Nilton 
+Bila, Shripad Nadgowda, and James Doran,
+ IBM TJ Watson Research Center";
+"25"->"Container technology is being adopted as
+ a mainstream platform for IT solutions 
+because of high degree of agility, reusa
+bility and portability it offers. Howeve
+r, there are challenges to be addressed 
+for successful adoption. First, it is di
+fficult to establish the full pedigree o
+f images downloaded from public registri
+es. Some might have vulnerabilities intr
+oduced unintentionally through rounds of
+ updates by different users. Second, non
+-conformance to the immutable software d
+eployment policies, such as those promot
+ed by the DevOps principles, introduces 
+vulnerabilities and the loss of control 
+over deployed software. In this study, w
+e investigate containers deployed in a p
+roduction cloud to derive a set of recom
+mended approaches to address these chall
+enges. Our analysis reveals evidences th
+at (i), images of unresolved pedigree ha
+ve introduced vulnerabilities to contain
+ers belonging to third parties; (ii), up
+dates to live public containers are comm
+on, defying the tenet that deployed soft
+ware is immutable; and (iii), scanning c
+ontainers or images alone is insufficien
+t to eradicate vulnerabilities from publ
+ic containers. We advocate for better sy
+stems support for tracking image provena
+nce and resolving disruptive changes to 
+containers, and propose practices that c
+ontainer users should adopt to limit the
+ vulnerability of their containers.";
+"USENIX"->"26";
+"26"->"Memshare: a Dynamic Multi-tenant Key-val
+ue Cache";
+"26"->"Asaf Cidon, Stanford University; Daniel 
+Rushton, University of Utah; Stephen M. 
+Rumble, Google Inc.; Ryan Stutsman, Univ
+ersity of Utah";
+"26"->"Web application performance heavily reli
+es on the hit rate of DRAM key-value cac
+hes. Current DRAM caches statically part
+ition memory across applications that sh
+are the cache. This results in under uti
+lization and limits cache hit rates. We 
+present Memshare, a DRAM key-value cache
+ that dynamically manages memory across 
+applications. Memshare provides a resour
+ce sharing model that guarantees reserve
+d memory to different applications while
+ dynamically pooling and sharing the rem
+aining memory to optimize overall hit ra
+te.Key-value caches are typically memory
+ capacity bound, which leaves cache serv
+er CPU and memory bandwidth idle. Memsha
+re leverages these resources with a log-
+structured design that allows it to prov
+ide better hit rates than conventional c
+aches by dynamically re-partitioning mem
+ory among applications. We implemented M
+emshare and ran it on a week-long trace 
+from a commercial memcached provider. Me
+mshare increases the combined hit rate o
+f the applications in the trace from 84.
+7% to 90.8%, and it reduces the total nu
+mber of misses by 39.7% without signific
+antly affecting cache throughput or late
+ncy. Even for single-tenant applications
+, Memshare increases the average hit rat
+e of the state-of-the-art key-value cach
+e by an additional 2.7%.";
+"USENIX"->"27";
+"27"->"Replication-driven Live Reconfiguration 
+for Fast Distributed Transaction Process
+ing";
+"27"->"Xingda Wei, Sijie Shen, Rong Chen, and H
+aibo Chen, Shanghai Jiao Tong University";
+"27"->"Recent in-memory database systems levera
+ge advanced hardware features like RDMA 
+to provide transactional processing at m
+illions of transactions per second. Dist
+ributed transaction processing systems c
+an scale to even higher rates, especiall
+y for partitionable workloads. Unfortuna
+tely, these high rates are challenging t
+o sustain during partition reconfigurati
+on events. In this paper, we first show 
+that state-of-the-art approaches would c
+ause notable performance disruption unde
+r fast transaction processing. To this e
+nd, this paper presents DrTM+B, a live r
+econfiguration approach that seamlessly 
+repartitions data while causing little p
+erformance disruption to running transac
+tions. DrTM+B uses a pre-copy based mech
+anism, where excessive data transfer is 
+avoided by leveraging properties commonl
+y found in recent transactional systems.
+ DrTM+B’s reconfiguration plans reduce
+ data movement by preferring existing da
+ta replicas, while data is asynchronousl
+y copied from multiple replicas in paral
+lel. It further reuses the log forwardin
+g mechanism in primary-backup replicatio
+n to seamlessly track and forward dirty 
+database tuples, avoiding iterative copy
+ing costs. To commit a reconfiguration p
+lan in a transactionally safe way, DrTM+
+B designs a cooperative commit protocol 
+to perform data and state synchronizatio
+ns among replicas. Evaluation on a worki
+ng system based on DrTM+R with 3-way rep
+lication using typical OLTP workloads li
+ke TPC-C and SmallBank shows that DrTM+B
+ incurs only very small performance degr
+adation during live reconfiguration. Bot
+h the reconfiguration time and the downt
+ime are also minimal.";
+"USENIX"->"28";
+"28"->"HiKV: A Hybrid Index Key-Value Store for
+ DRAM-NVM Memory Systems";
+"28"->"Fei Xia, Institute of Computing Technolo
+gy, Chinese Academy of Sciences; Univers
+ity of Chinese Academy of Sciences; Deju
+n Jiang, Jin Xiong, and Ninghui Sun, Ins
+titute of Computing Technology, Chinese 
+Academy of Sciences";
+"28"->"Hybrid memory systems consisting of DRAM
+ and Non-Volatile Memory are promising t
+o persist data fast. The index design of
+ existing key-value stores for hybrid me
+mory fails to utilize its specific perfo
+rmance characteristics: fast writes in D
+RAM, slow writes in NVM, and similar rea
+ds in DRAM and NVM. This paper presents 
+HiKV, a persistent key-value store with 
+the central idea of constructing a hybri
+d index in hybrid memory. To support ric
+h key-value operations efficiently, HiKV
+ exploits the distinct merits of hash in
+dex and B+-Tree index. HiKV builds and p
+ersists the hash index in NVM to retain 
+its inherent ability of fast index searc
+hing. HiKV builds the B+-Tree index in D
+RAM to support range scan and avoids lon
+g NVM writes for maintaining consistency
+ of the two indexes. Furthermore, HiKV a
+pplies differential concurrency schemes 
+to hybrid index and adopts ordered-write
+ consistency to ensure crash consistency
+. For single-threaded performance, HiKV 
+outperforms the state-of-the-art NVM-bas
+ed key-value stores by reducing latency 
+up to 86.6%, and for multi-threaded perf
+ormance, HiKV increases the throughput b
+y up to 6.4x under YCSB workloads.";
+"USENIX"->"29";
+"29"->"TRIAD: Creating Synergies Between Memory
+, Disk and Log in Log Structured Key-Val
+ue Stores";
+"29"->"Oana Balmau, Diego Didona, Rachid Guerra
+oui, and Willy Zwaenepoel, EPFL; Huapeng
+ Yuan, Aashray Arora, Karan Gupta, and P
+avan Konka, Nutanix";
+"29"->"We present TRIAD, a new persistent key-v
+alue (KV) store based on Log-Structured 
+Merge (LSM) trees. TRIAD improves LSM KV
+ throughput by reducing the write amplif
+ication arising in the maintenance of th
+e LSM tree structure. Although occurring
+ in the background, write amplification 
+consumes significant CPU and I/O resourc
+es. By reducing write amplification, TRI
+AD allows these resources to be used ins
+tead to improve user-facing throughput.T
+RIAD uses a holistic combination of thre
+e techniques. At the LSM memory componen
+t level, TRIAD leverages skew in data po
+pularity to avoid frequent I/O operation
+s on the most popular keys. At the stora
+ge level, TRIAD amortizes management cos
+ts by deferring and batching multiple I/
+O operations. At the commit log level, T
+RIAD avoids duplicate writes to storage.
+We implement TRIAD as an extension of Fa
+cebook’s RocksDB and evaluate it with 
+production and synthetic workloads. With
+ these workloads, TRIAD yields up to 193
+% improvement in throughput. It reduces 
+write amplification by a factor of up to
+ 4x, and decreases the amount of I/O by 
+an order of magnitude.";
+"USENIX"->"30";
+"30"->"Visualizing Performance with Flame Graph
+sBrendan Gregg, Netflix";
+"30"->"Brendan Gregg, Senior Performance Archit
+ect, NetflixBrendan Gregg is an industry
+ expert in computing performance and clo
+ud computing. He is a senior performance
+ architect at Netflix, where he does per
+formance design, evaluation, analysis, a
+nd tuning. He is the author of multiple 
+technical books including Systems Perfor
+mance published by Prentice Hall, and re
+ceived the USENIX LISA Award for Outstan
+ding Achievement in System Administratio
+n. He has also worked as a kernel engine
+er, and as a performance lead on storage
+ and cloud products. Brendan has created
+ performance analysis tools included in 
+multiple operating systems, and visualiz
+ations and methodologies for performance
+ analysis, including flame graphs.";
+"30"->"Flame graphs are a simple stack trace vi
+sualization that helps answer an everyda
+y problem: how is software consuming res
+ources, especially CPUs, and how did thi
+s change since the last software version
+? Flame graphs have been adopted by many
+ languages, products, and companies, inc
+luding Netflix, and have become a standa
+rd tool for performance analysis. They w
+ere published in The Flame Graph article
+ in the June 2016 issue of Communication
+s of the ACM, by their creator, Brendan 
+Gregg.This talk describes the background
+ for this work, and the challenges encou
+ntered when profiling stack traces and r
+esolving symbols for different languages
+, including for just-in-time compiler ru
+ntimes. Instructions will be included ge
+nerating mixed-mode flame graphs on Linu
+x, and examples from our use at Netflix 
+with Java. Advanced flame graph types wi
+ll be described, including differential,
+ off-CPU, chain graphs, memory, and TCP 
+events. Finally, future work and unsolve
+d problems in this area will be discusse
+d.";
+"USENIX"->"31";
+"31"->"Brendan Gregg, Netflix";
+"31"->"Brendan Gregg is an industry expert in c
+omputing performance and cloud computing
+. He is a senior performance architect a
+t Netflix, where he does performance des
+ign, evaluation, analysis, and tuning. H
+e is the author of multiple technical bo
+oks including Systems Performance publis
+hed by Prentice Hall, and received the U
+SENIX LISA Award for Outstanding Achieve
+ment in System Administration. He has al
+so worked as a kernel engineer, and as a
+ performance lead on storage and cloud p
+roducts. Brendan has created performance
+ analysis tools included in multiple ope
+rating systems, and visualizations and m
+ethodologies for performance analysis, i
+ncluding flame graphs.";
+"31"->"";
+"USENIX"->"32";
+"32"->"Performance Superpowers with Enhanced BP
+FBrendan Gregg, Netflix";
+"32"->"Brendan Gregg, Senior Performance Archit
+ect, NetflixBrendan Gregg is an industry
+ expert in computing performance and clo
+ud computing. He is a senior performance
+ architect at Netflix, where he does per
+formance design, evaluation, analysis, a
+nd tuning. He is the author of multiple 
+technical books including Systems Perfor
+mance published by Prentice Hall, and re
+ceived the USENIX LISA Award for Outstan
+ding Achievement in System Administratio
+n. He has also worked as a kernel engine
+er, and as a performance lead on storage
+ and cloud products. Brendan has created
+ performance analysis tools included in 
+multiple operating systems, and visualiz
+ations and methodologies for performance
+ analysis, including flame graphs.";
+"32"->"The Berkeley Packet Filter (BPF) in Linu
+x has been enhanced in very recent versi
+ons to do much more than just filter pac
+kets, and has become a hot area of opera
+ting systems innovation, with much more 
+yet to be discovered. BPF is a sandboxed
+ virtual machine that runs user-level de
+fined programs in kernel context, and is
+ part of many kernels. The Linux enhance
+ments allow it to run custom programs on
+ other events, including kernel- and use
+r-level dynamic tracing (kprobes and upr
+obes), static tracing (tracepoints), and
+ hardware events. This is finding uses f
+or the generation of new performance ana
+lysis tools, network acceleration techno
+logies, and security intrusion detection
+ systems.This talk will explain the BPF 
+enhancements, then discuss the new perfo
+rmance observability tools that are in u
+se and being created, especially from th
+e BPF compiler collection (bcc) open sou
+rce project. These tools provide new ins
+ights for file system and storage perfor
+mance, CPU scheduler performance, TCP pe
+rformance, and much more. This is a majo
+r turning point for Linux systems engine
+ering, as custom advanced performance in
+strumentation can be used safely in prod
+uction environments, powering a new gene
+ration of tools and visualizations.Becau
+se these BPF enhancements are only in ve
+ry recent Linux (such as Linux 4.9), mos
+t companies are not yet running new enou
+gh kernels to be exploring BPF yet. This
+ will change in the next year or two, as
+ companies including Netflix upgrade the
+ir kernels. This talk will give you a he
+ad start on this growing technology, and
+ also discuss areas of future work and u
+nsolved problems.";
+"USENIX"->"33";
+"33"->"Brendan Gregg, Netflix";
+"33"->"Brendan Gregg is an industry expert in c
+omputing performance and cloud computing
+. He is a senior performance architect a
+t Netflix, where he does performance des
+ign, evaluation, analysis, and tuning. H
+e is the author of multiple technical bo
+oks including Systems Performance publis
+hed by Prentice Hall, and received the U
+SENIX LISA Award for Outstanding Achieve
+ment in System Administration. He has al
+so worked as a kernel engineer, and as a
+ performance lead on storage and cloud p
+roducts. Brendan has created performance
+ analysis tools included in multiple ope
+rating systems, and visualizations and m
+ethodologies for performance analysis, i
+ncluding flame graphs.";
+"33"->"";
+"USENIX"->"34";
+"34"->"Engineering Record and Replay for Deploy
+ability";
+"34"->"Robert O’Callahan and Chris Jones, una
+ffiliated; Nathan Froyd, Mozilla Corpora
+tion; Kyle Huey, unaffiliated; Albert No
+ll, Swisscom AG; Nimrod Partush, Technio
+n";
+"34"->"The ability to record and replay program
+ executions with low overhead enables ma
+ny applications, such as reverse-executi
+on debugging, debugging of hard-to repro
+duce test failures, and “black box” 
+forensic analysis of failures in deploye
+d systems. Existing record-and replay ap
+proaches limit deployability by recordin
+g an entire virtual machine (heavyweight
+), modifying the OS kernel (adding deplo
+yment and maintenance costs), requiring 
+pervasive code instrumentation (imposing
+ significant performance and complexity 
+overhead), or modifying compilers and ru
+ntime systems (limiting generality). We 
+investigated whether it is possible to b
+uild a practical record-and-replay syste
+m avoiding all these issues. The answer 
+turns out to be yes—if the CPU and ope
+rating system meet certain non-obvious c
+onstraints. Fortunately modern Intel CPU
+s, Linux kernels and user-space framewor
+ks do meet these constraints, although t
+his has only become true recently. With 
+some novel optimizations, our system RR 
+records and replays real-world low-paral
+lelism workloads with low overhead, with
+ an entirely user-space implementation, 
+using stock hardware, compilers, runtime
+s and operating systems. RR forms the ba
+sis of an open-source reverse-execution 
+debugger seeing significant use in pract
+ice. We present the design and implement
+ation of RR, describe its performance on
+ a variety of workloads, and identify co
+nstraints on hardware and operating syst
+em design required to support our approa
+ch.";
+"USENIX"->"35";
+"35"->"Proactive error prediction to improve st
+orage system reliability";
+"35"->"Farzaneh Mahdisoltani, University of Tor
+onto; Ioan Stefanovici, Microsoft Resear
+ch; Bianca Schroeder, University of Toro
+nto";
+"35"->"This paper proposes the use of machine l
+earning techniques to make storage syste
+ms more reliable in the face of sector e
+rrors. Sector errors are partial drive f
+ailures, where individual sectors on a d
+rive become unavailable, and occur at a 
+high rate in both hard disk drives and s
+olid state drives. The data in the affec
+ted sectors can only be recovered throug
+h redundancy in the system (e.g. another
+ drive in the same RAID) and is lost if 
+the error is encountered while the syste
+m operates in degraded mode, e.g. during
+ RAID reconstruction.In this paper, we e
+xplore a range of different machine lear
+ning techniques and show that sector err
+ors can be predicted ahead of time with 
+high accuracy. Prediction is robust, eve
+n when only little training data or only
+ training data for a different drive mod
+el is available. We also discuss a numbe
+r of possible use cases for improving st
+orage system reliability through the use
+ of sector error predictors. We evaluate
+ one such use case in detail: We show th
+at the mean time to detecting errors (an
+d hence the window of vulnerability to d
+ata loss) can be greatly reduced by adap
+ting the speed of a scrubber based on er
+ror predictions.";
+"USENIX"->"36";
+"36"->"Towards Production-Run Heisenbugs Reprod
+uction on Commercial Hardware";
+"36"->"Shiyou Huang, Bowen Cai, and Jeff Huang,
+ Texas A&M University";
+"36"->"We present a new technique, H3, for repr
+oducing Heisenbugs in production runs on
+ commercial hardware. H3 integrates the 
+hardware control flow tracing capability
+ provided in recent Intel processors wit
+h symbolic constraint analysis. Compared
+ to a state-of-the-art solution, CLAP, t
+his integration allows H3 to reproduce f
+ailures with much lower runtime overhead
+ and much more compact trace. Moreover, 
+it allows us to develop a highly effecti
+ve core-based constraint reduction techn
+ique that significantly reduces the comp
+lexity of the generated symbolic constra
+ints. H3 has been implemented for C/C++ 
+and evaluated on both popular benchmarks
+ and real-world applications. It reprodu
+ces real-world Heisenbugs with overhead 
+ranging between 1.4%- 23.4%, up to 8X mo
+re efficient than CLAP, and incurs only 
+4.9% runtime overhead on PARSEC benchmar
+ks.";
+"USENIX"->"37";
+"37"->"A DSL Approach to Reconcile Equivalent D
+ivergent Program Executions";
+"37"->"Luís Pina, Daniel Grumberg, Anastasios 
+Andronidis, and Cristian Cadar, Imperial
+ College London";
+"37"->"Multi-Version Execution (MVE) deploys mu
+ltiple versions of the same program, typ
+ically synchronizing their execution at 
+the level of system calls. By default, M
+VE requires all deployed versions to iss
+ue the same sequence of system calls, wh
+ich limits the types of versions which c
+an be deployed.In this paper, we propose
+ a Domain-Specific Language (DSL) to rec
+oncile expected divergences between diff
+erent program versions deployed through 
+MVE. We evaluate the DSL by adding it to
+ an existing MVE system (Varan) and test
+ing it via three scenarios: (1) deployin
+g the same program under different confi
+gurations, (2) deploying different relea
+ses of the same program, and (3) deployi
+ng dynamic analyses in parallel with the
+ native execution. We also present an al
+gorithm to automatically extract DSL rul
+es from pairs of system call traces. Our
+ results show that each scenario require
+s a small number of simple rules (at mos
+t 14 rules in each case) and that writin
+g DSL rules can be partially automated.";
+"USENIX"->"38";
+"38"->"Titan: Fair Packet Scheduling for Commod
+ity Multiqueue NICs";
+"38"->"Brent Stephens, Arjun Singhvi, Aditya Ak
+ella, and Michael Swift, UW-Madison";
+"38"->"The performance of an OS’s networking 
+stack can be measured by its achieved th
+roughput, CPU utilization, latency, and 
+per-flow fairness. To be able to drive i
+ncreasing line-rates at 10Gbps and beyon
+d, modern OS networking stacks rely on a
+ number of important hardware and softwa
+re optimizations, including but not limi
+ted to using multiple transmit and recei
+ve queues and segmentation offloading. U
+nfortunately, we have observed that thes
+e optimizations lead to substantial flow
+-level unfairness.We describe Titan, an 
+extension to the Linux networking stack 
+that systematically addresses unfairness
+ arising in different operating conditio
+ns. Across both fine and coarse timescal
+es and when NIC queues are undersubscrib
+ed and oversubscribed, we find that the 
+Titan can reduce unfairness by 58% or mo
+re when compared with the best performin
+g Linux configuration. We also find that
+ improving fairness can lead to a reduct
+ion in tail flow completion times for fl
+ows in an all-to-all shuffle in a cluste
+r of servers.";
+"USENIX"->"39";
+"39"->"MopEye: Opportunistic Monitoring of Per-
+app Mobile Network Performance";
+"39"->"Daoyuan Wu, Singapore Management Univers
+ity; Rocky K. C. Chang, Weichao Li, and 
+Eric K. T. Cheng, The Hong Kong Polytech
+nic University; Debin Gao, Singapore Man
+agement University";
+"39"->"Crowdsourcing mobile user’s network pe
+rformance has become an effective way of
+ understanding and improving mobile netw
+ork performance and user quality-of-expe
+rience. However, the current measurement
+ method is still based on the landline m
+easurement paradigm in which a measureme
+nt app measures the path to fixed (measu
+rement or web) servers. In this work, we
+ introduce a new paradigm of measuring p
+er-app mobile network performance. We de
+sign and implement MopEye, an Android ap
+p to measure network round-trip delay fo
+r each app whenever there is app traffic
+. This opportunistic measurement can be 
+conducted automatically without user int
+ervention. Therefore, it can facilitate 
+a large-scale and long-term crowdsourcin
+g of mobile network performance. In the 
+course of implementing MopEye, we have o
+vercome a suite of challenges to make th
+e continuous latency monitoring lightwei
+ght and accurate. We have deployed MopEy
+e to Google Play for an IRB-approved cro
+wdsourcing study in a period of ten mont
+hs, which obtains over five million meas
+urements from 6,266 Android apps on 2,35
+1 smartphones. The analysis reveals a nu
+mber of new findings on the per-app netw
+ork performance and mobile DNS performan
+ce.";
+"USENIX"->"40";
+"40"->"Emu: Rapid Prototyping of Networking Ser
+vices";
+"40"->"Nik Sultana, Salvator Galea, David Greav
+es, Marcin Wojcik, and Jonny Shipton, Un
+iversity of Cambridge; Richard Clegg, Qu
+een Mary University of London; Luo Mai, 
+Imperial College London; Pietro Bressana
+ and Robert Soule, Università della Svi
+zzera italiana; Richard Mortier, Univers
+ity of Cambridge; Paolo Costa, Microsoft
+ Research; Peter Pietzuch, Imperial Coll
+ege London; Jon Crowcroft, Andrew W Moor
+e, and Noa Zilberman, University of Camb
+ridge";
+"40"->"Due to their performance and flexibility
+, FPGAs are an attractive platform for t
+he execution of network functions. It ha
+s been a challenge for a long time thoug
+h to make FPGA programming accessible to
+ a large audience of developers. An appe
+aling solution is to compile code from a
+ general-purpose language to hardware us
+ing high-level synthesis. Unfortunately,
+ current approaches to implement rich ne
+twork functionality are insufficient bec
+ause they lack: (i) libraries with abstr
+actions for common network operations an
+d data structures, (ii) bindings to the 
+underlying “substrate” on the FPGA, 
+and (iii) debugging and profiling suppor
+t.This paper describes Emu, a new standa
+rd library for an FPGA hardware compiler
+ that enables developers to rapidly crea
+te and deploy network functionality. Emu
+ allows for high-performance designs wit
+hout being bound to particular packet pr
+ocessing paradigms. Furthermore, it supp
+orts running the same programs on CPUs, 
+in Mininet, and on FPGAs, providing a be
+tter development environment that includ
+es advanced debugging capabilities. We d
+emonstrate that network functions implem
+ented using Emu have only negligible res
+ource and performance overheads compared
+ with natively-written hardware versions
+.";
+"USENIX"->"41";
+"41"->"Protego: Cloud-Scale Multitenant IPsec G
+ateway";
+"41"->"Jeongseok Son, KAIST and Microsoft Resea
+rch; Yongqiang Xiong, Microsoft Research
+; Kun Tan, Huawei; Paul Wang and Ze Gan,
+ Microsoft Research; Sue Moon, KAIST";
+"41"->"Virtual cloud network services let users
+ have their own private networks in the 
+public cloud. IPsec gateways are growing
+ in importance accordingly as they provi
+de VPN connections for customers to remo
+tely access these private networks. Majo
+r cloud providers offer IPsec gateway fu
+nctions to tenants using virtual machine
+s (VMs) running a software IPsec gateway
+ inside. However, dedicating individual 
+IPsec gateway VMs to each tenant results
+ in significant resource waste due to th
+e strong isolation mechanism of VMs.In t
+his paper, we design Protego, a distribu
+ted IPsec gateway service designed for m
+ultitenancy. By separating the control p
+lane and the data plane of an IPsec gate
+way, Protego achieves high availability 
+with active redundancy. Furthermore, Pro
+tego elastically scales in and out by se
+amlessly migrating IPsec tunnels between
+ the data nodes without compromising the
+ir throughput. Our evaluation and simula
+tion based on production data show that 
+Protego together with a simple resource 
+provisioning algorithm saves more than 8
+0% of the resources compared with alloca
+ting independent VMs.";
+"USENIX"->"42";
+"42"->"Cache Modeling and Optimization using Mi
+niature Simulations";
+"42"->"Carl Waldspurger, Trausti Saemundsson, a
+nd Irfan Ahmad, CachePhysics, Inc.; Nohh
+yun Park, Datos IO, Inc.Awarded Best Pap
+er!";
+"42"->"Recent approximation algorithms (e.g., C
+ounterStacks, SHARDS and AET) make light
+weight, continuously-updated miss ratio 
+curves (MRCs) practical for online model
+ing and control of LRU caches. For more 
+complex cache-replacement policies, scal
+ed-down simulation, introduced with SHAR
+DS, offers a general method for emulatin
+g a given cache size by using a miniatur
+e cache processing a small spatially-has
+hed sample of requests.We present the fi
+rst detailed study evaluating the effect
+iveness of this approach for modeling no
+n-LRU algorithms, including ARC, LIRS an
+d OPT. Experiments with over a hundred r
+eal-world traces demonstrate that scaled
+-down MRCs are extremely accurate while 
+requiring dramatically less space and ti
+me than full simulation.We propose an ef
+ficient, generic framework for dynamic o
+ptimization using multiple scaled-down s
+imulations to explore candidate cache co
+nfigurations simultaneously. Experiments
+ demonstrate significant improvements fr
+om automatic adaptation of parameters in
+cluding the stack size limit in LIRS, an
+d queue sizes in 2Q.Finally, we introduc
+e SLIDE, a new approach inspired by Talu
+s that uses scaled-down MRCs to remove p
+erformance cliffs automatically. SLIDE p
+erforms shadow partitioning transparentl
+y within a single unified cache, avoidin
+g the problem of migrating state between
+ distinct caches when partition boundari
+es change. Experiments demonstrate that 
+SLIDE improves miss ratios for many cach
+e policies, with large gains in the pres
+ence of cliffs.";
+"USENIX"->"43";
+"43"->"Hyperbolic Caching: Flexible Caching for
+ Web Applications";
+"43"->"Aaron Blankstein, Princeton University; 
+Siddhartha Sen, Microsoft Research; Mich
+ael J. Freedman, Princeton University";
+"43"->"Today’s web applications rely heavily 
+on caching to reduce latency and backend
+ load, using services like Redis or Memc
+ached that employ inflexible caching alg
+orithms. But the needs of each applicati
+on vary, and significant performance gai
+ns can be achieved with a tailored strat
+egy, e.g., incorporating cost of fetchin
+g, expiration time, and so forth. Existi
+ng strategies are fundamentally limited,
+ however, because they rely on data stru
+ctures to maintain a total ordering of t
+he cached items.Inspired by Redis’s us
+e of random sampling for eviction (in li
+eu of a data structure) and recent theor
+etical justification for this approach, 
+we design a new caching algorithm for we
+b applications called hyperbolic caching
+. Unlike prior schemes, hyperbolic cachi
+ng decays item priorities at variable ra
+tes and continuously reorders many items
+ at once. By combining random sampling w
+ith lazy evaluation of the hyperbolic pr
+iority function, we gain complete flexib
+ility in customizing the function. For e
+xample, we describe extensions that inco
+rporate item cost, expiration time, and 
+windowing. We also introduce the notion 
+of a cost class in order to measure the 
+costs and manipulate the priorities of a
+ll items belonging to a related group.We
+ design a hyperbolic caching variant for
+ several production systems from leading
+ cloud providers. We implement our schem
+e in Redis and the Django web framework.
+ Using real and simulated traces, we sho
+w that hyperbolic caching reduces miss r
+ates by ~10-20% over competitive baselin
+es tailored to the application, and impr
+oves end-toend throughput by ~5-10%.";
+"USENIX"->"44";
+"44"->"Execution Templates: Caching Control Pla
+ne Decisions for Strong Scaling of Data 
+Analytics";
+"44"->"Omid Mashayekhi, Hang Qu, Chinmayee Shah
+, and Philip Levis, Stanford University";
+"44"->"Control planes of cloud frameworks trade
+ off between scheduling granularity and 
+performance. Centralized systems schedul
+e at task granularity, but only schedule
+ a few thousand tasks per second. Distri
+buted systems schedule hundreds of thous
+ands of tasks per second but changing th
+e schedule is costly.We present executio
+n templates, a control plane abstraction
+ that can schedule hundreds of thousands
+ of tasks per second while supporting fi
+ne-grained, per-task scheduling decision
+s. Execution templates leverage a progra
+m’s repetitive control flow to cache b
+locks of frequently-executed tasks. Exec
+uting a task in a template requires send
+ing a single message. Large-scale schedu
+ling changes install new templates, whil
+e small changes apply edits to existing 
+templates.Evaluations of execution templ
+ates in Nimbus, a data analytics framewo
+rk, find that they provide the fine-grai
+ned scheduling flexibility of centralize
+d control planes while matching the stro
+ng scaling of distributed ones. Executio
+n templates support complex, real-world 
+applications, such as a fluid simulation
+ with a triply nested loop and data depe
+ndent branches.";
+"USENIX"->"45";
+"45"->"cHash: Detection of Redundant Compilatio
+ns via AST Hashing";
+"45"->"Christian Dietrich and Valentin Rothberg
+, Leibniz Universität Hannover; Ludwig 
+Füracker and Andreas Ziegler, Friedrich
+-Alexander Universität Erlangen-Nürnbe
+rg; Daniel Lohmann, Leibniz Universität
+ HannoverAwarded Best Paper!";
+"45"->"Software projects that use a compiled la
+nguage are built hundreds of thousands o
+f times during their lifespan. Hence, th
+e compiler is invoked over and over agai
+n on an incrementally changing source ba
+se. As previous work has shown, up to 97
+ percent of these invocations are redund
+ant and do not lead to an altered compil
+ation result. In order to avoid such red
+undant builds, many developers use cachi
+ng tools that are based on textual hashi
+ng of the source files. However, these t
+ools fail in the presence of modificatio
+ns that leave the compilation result unc
+hanged. Especially for C projects, where
+ module-interface definitions are import
+ed textually with the C preprocessor, mo
+difications to header files lead to many
+ redundant compilations.In this paper, w
+e present the cHash approach and compile
+r extension to quickly detect modificati
+ons on the language level that will not 
+lead to a changed compilation result. By
+ calculating a hash over the abstract sy
+ntax tree, we achieve a high precision a
+t comparatively low costs. While cHash i
+s light-weight and build system agnostic
+, it can cancel 80 percent of all compil
+er invocations early and reduce the buil
+d-time of incremental builds by up to 51
+ percent. In comparison to the state-of-
+the-art CCache tool, cHash is at least 3
+0 percent more precise in detecting redu
+ndant compilations.";
+"USENIX"->"46";
+"46"->"Application Crash Consistency and Perfor
+mance with CCFSLink to Paper";
+"46"->"Thanumalayan Sankaranarayana Pillai, Ram
+natthan Alagappan, and Lanyue Lu, Univer
+sity of Wisconsin—Madison; Vijay Chida
+mbaram, The University of Texas at Austi
+n; Andrea C. Arpaci-Dusseau and Remzi H.
+ Arpaci-Dusseau, University of Wisconsin
+—MadisonBest Paper at FAST '17: Link t
+o Paper";
+"46"->"Recent research has shown that applicati
+ons often incorrectly implement crash co
+nsistency. We present ccfs, a file syste
+m that improves the correctness of appli
+cation-level crash consistency protocols
+ while maintaining high performance. A k
+ey idea in ccfs is the abstraction of a 
+stream. Within a stream, updates are com
+mitted in program order, thus helping co
+rrectness; across streams, there are no 
+ordering restrictions, thus enabling sch
+eduling flexibility and high performance
+. We empirically demonstrate that applic
+ations running atop ccfs achieve high le
+vels of crash consistency. Further, we s
+how that ccfs performance under standard
+ filesystem benchmarks is excellent, in 
+the worst case on par with the highest p
+erforming modes of Linux ext4, and in so
+me cases notably better. Overall, we dem
+onstrate that both application correctne
+ss and high performance can be realized 
+in a modern file system.";
+"USENIX"->"47";
+"47"->"Push-Button Verification of File Systems
+ via Crash RefinementLink to Paper";
+"47"->"Helgi Sigurbjarnarson, James Bornholt, E
+mina Torlak, and Xi Wang, University of 
+WashingtonBest Paper at OSDI '16: Link t
+o Paper";
+"47"->"The file system is an essential operatin
+g system component for persisting data o
+n storage devices. Writing bug-free file
+ systems is non-trivial, as they must co
+rrectly implement and maintain complex o
+n-disk data structures even in the prese
+nce of system crashes and reorderings of
+ disk operations.This paper presents Ygg
+drasil, a toolkit for writing file syste
+ms with push-button verification: Yggdra
+sil requires no manual annotations or pr
+oofs about the implementation code, and 
+it produces a counterexample if there is
+ a bug. Yggdrasil achieves this automati
+on through a novel definition of file sy
+stem correctness called crash refinement
+, which requires the set of possible dis
+k states produced by an implementation (
+including states produced by crashes) to
+ be a subset of those allowed by the spe
+cification. Crash refinement is amenable
+ to fully automated satisfiability modul
+o theories (SMT) reasoning, and enables 
+developers to implement file systems in 
+a modular way for verification.With Yggd
+rasil, we have implemented and verified 
+the Yxv6 journaling file system, the Ycp
+ file copy utility, and the Ylog persist
+ent log. Our experience shows that the e
+ase of proof and counterexample-based de
+bugging support make Yggdrasil practical
+ for building reliable storage applicati
+ons.";
+"USENIX"->"48";
+"48"->"Early Detection of Configuration Errors 
+to Reduce Failure DamageLink to Paper";
+"48"->"Tianyin Xu, Xinxin Jin, Peng Huang, and 
+Yuanyuan Zhou, University of California,
+ San Diego; Shan Lu, University of Chica
+go; Long Jin, University of California, 
+San Diego; Shankar Pasupathy, NetApp, In
+c.Best Paper at OSDI '16: Link to Paper";
+"48"->" Early detection is the key to minimizin
+g failure damage induced by configuratio
+n errors, especially those errors in con
+figurations that control failure handlin
+g and fault tolerance. Since such config
+urations are not needed for initializati
+on, many systems do not check their sett
+ings early (e.g., at startup time). Cons
+equently, the errors become latent until
+ their manifestations cause severe damag
+e, such as breaking the failure handling
+. Such latent errors are likely to escap
+e from sysadmins’ observation and test
+ing, and be deployed to production at sc
+ale.Our study shows that many of today’s mature, widely-used software systems 
+are subject to latent configuration erro
+rs (referred to as LC errors) in their c
+ritically important configurations—tho
+se related to the system’s reliability
+, availability, and serviceability. One 
+root cause is that many (14.0%–93.2%) 
+of these configurations do not have any 
+special code for checking the correctnes
+s of their settings at the system’s in
+itialization time.To help software syste
+ms detect LC errors early, we present a 
+tool named PCHECK that analyzes the sour
+ce code and automatically generates conf
+iguration checking code (called checkers
+). The checkers emulate the late executi
+on that uses configuration values, and d
+etect LC errors if the error manifestati
+ons are captured during the emulated exe
+cution. Our results show that PCHECK can
+ help systems detect 75+% of real-world 
+LC errors at the initialization phase, i
+ncluding 37 new LC errors that have not 
+been exposed before. Compared with exist
+ing detection tools, it can detect 31% m
+ore LC errors.";
+"USENIX"->"49";
+"49"->"Fast, Lean, and Accurate: Modeling Passw
+ord Guessability Using Neural NetworksLi
+nk to Paper";
+"49"->"William Melicher, Blase Ur, Sean M. Segr
+eti, Saranga Komanduri, Lujo Bauer, Nico
+las Christin, and Lorrie Faith Cranor, C
+arnegie Mellon UniversityBest Paper at U
+SENIX Security '16: Link to Paper";
+"49"->"Human-chosen text passwords, today’s d
+ominant form of authentication, are vuln
+erable to guessing attacks. Unfortunatel
+y, existing approaches for evaluating pa
+ssword strength by modeling adversarial 
+password guessing are either inaccurate 
+or orders of magnitude too large and too
+ slow for real-time, client-side passwor
+d checking. We propose using artificial 
+neural networks to model text passwords’
+ resistance to guessing attacks and ex
+plore how different architectures and tr
+aining methods impact neural networks’ guessing effectiveness. We show that ne
+ural networks can often guess passwords 
+more effectively than state-of-the-art a
+pproaches, such as probabilistic context
+-free grammars and Markov models. We als
+o show that our neural networks can be h
+ighly compressed—to as little as hundr
+eds of kilobytes— without substantiall
+y worsening guessing effectiveness. Buil
+ding on these results, we implement in J
+avaScript the first principled client-si
+de model of password guessing, which ana
+lyzes a password’s resistance to a gue
+ssing attack of arbitrary duration with 
+sub-second latency. Together, our contri
+butions enable more accurate and practic
+al password checking than was previously
+ possible.";
+"USENIX"->"50";
+"50"->"Giza: Erasure Coding Objects across Glob
+al Data Centers";
+"50"->"Yu Lin Chen, NYU & Microsoft Corporation
+; Shuai Mu and Jinyang Li, NYU; Cheng Hu
+ang, Jin Li, Aaron Ogus, and Douglas Phi
+llips, Microsoft Corporation";
+"50"->"Microsoft Azure Storage is a global clou
+d storage system with a footprint in 38 
+geographic regions. To protect customer 
+data against catastrophic data center fa
+ilures, it optionally replicates data to
+ secondary DCs hundreds ofmiles away. Us
+ing Microsoft OneDrive as an example, th
+is paper illustrates the characteristics
+ of typical cloud storage workloads and 
+the opportunity to lower storage cost fo
+r geo-redundancy with erasure coding.The
+ paper presents the design, implementati
+on and evaluation of Giza – a strongly
+ consistent, versioned object store that
+ applies erasure coding across global da
+ta centers. The key technical challenge 
+Giza addresses isto achieve single cross
+-DC round trip latency for the common co
+ntention-free workload, while also maint
+aining strong consistency when there are
+ conflicting access. Giza addresses the 
+challenge with a novel implementationof 
+well-known distributed consensus algorit
+hms tailored for restricted cloud storag
+e APIs. Giza is deployed to 11 DCs acros
+s 3 continents and experimental results 
+demonstrate that it achieves our design 
+goals.";
+"USENIX"->"51";
+"51"->"SmartCuckoo: A Fast and Cost-Efficient H
+ashing Index Scheme for Cloud Storage Sy
+stems";
+"51"->"Yuanyuan Sun and Yu Hua, Huazhong Univer
+sity of Science and Technology; Song Jia
+ng, University of Texas, Arlington; Qiuy
+u Li, Shunde Cao, and Pengfei Zuo, Huazh
+ong University of Science and Technology";
+"51"->"Fast query services are important to imp
+rove overall per- formance of large-scal
+e storage systems when handling a large 
+number of files. Open-addressing cuckoo 
+hash schemes have been widely used to su
+pport query services due to the salient 
+features of simplicity and ease of use. 
+Conventional schemes are unfortunately i
+nadequate to address the potential probl
+em of having endless loops during item i
+nsertion, which degrades the query perfo
+rmance. To address the problem, we propo
+se a cost- efficient cuckoo hashing sche
+me, named SmartCuckoo. The idea behind S
+martCuckoo is to represent the hashing r
+elationship as a directed pseudoforest a
+nd use it to track item placements for a
+ccurately predetermining the occurrence 
+of endless loop. SmartCuckoo can efficie
+ntly predetermine insertion failures wit
+hout paying a high cost of carrying out 
+step-by-step probing. We have implemente
+d SmartCuckoo in a large-scale cloud sto
+rage system. Extensive evaluations using
+ three real- world traces and the YCSB b
+enchmark demonstrate the efficiency and 
+efficacy of SmartCuckoo. We have release
+d the source code of SmartCuckoo for pub
+lic use.";
+"USENIX"->"52";
+"52"->"Repair Pipelining for Erasure-Coded Stor
+age";
+"52"->"Runhui Li, Xiaolu Li, Patrick P. C. Lee,
+ and Qun Huang, The Chinese University o
+f Hong Kong";
+"52"->"We propose repair pipelining, a techniqu
+e that speeds up the repair performance 
+in general erasure-coded storage. By pip
+elining the repair of failed data in sma
+ll-size units across storage nodes, repa
+ir pipelining reduces the repair time to
+ approximately the same as the normal re
+ad time to the same amount of data in ho
+mogeneous environments. We further exten
+d repair pipelining for heterogeneous en
+vironments. We implement a repair pipeli
+ning prototype called ECPipe and integra
+te it as a middleware system into two op
+en-source distributed storage systems HD
+FS and QFS. Experiments on a local testb
+ed and Amazon EC2 show that repair pipel
+ining significantly improves the perform
+ance of both degraded reads and full-nod
+e recovery over existing repair techniqu
+es.";
+"USENIX"->"53";
+"53"->"PARIX: Speculative Partial Writes in Era
+sure-Coded Systems";
+"53"->"Huiba Li, mos.meituan.com; Yiming Zhang,
+ NUDT; Zhiming Zhang, mos.meituan.com; S
+hengyun Liu, Dongsheng Li, Xiaohui Liu, 
+and Yuxing Peng, NUDT";
+"53"->"Erasure coding (EC) has been widely used
+ in cloud storage systems because it eff
+ectively reduces storage redundancy whil
+e providing the same level of durability
+. However, EC introduces significant ove
+rhead to small write operations which pe
+rform partial write to an entire EC grou
+p. This has been a major barrier for EC 
+to be widely adopted in small-write-inte
+nsive systems such as virtual disk servi
+ce. Parity logging (PL) appends parity c
+hanges to a journal to accelerate partia
+l writes. However, since previous PL sch
+emes have to perform a time-consuming wr
+ite-after-read for each partial write, i
+.e., read the current value of the data 
+and then compute and write the parity de
+lta, their write performance is still mu
+ch lower than that of replication-based 
+storage.This paper presents PARIX, a spe
+culative partial write scheme for fast p
+arity logging. We transform the original
+ formula of parity calculation, so as to
+ use the data deltas (between the curren
+t/original data values), instead of the 
+parity deltas, to calculate the parities
+ during journal replay. For each partial
+ write, this allows PARIX to speculative
+ly log only the current value of the dat
+a. The original value is needed only onc
+e in a journal when performing the first
+ write to the data. For a series of n pa
+rtial writes to the same data, PARIX per
+forms pure write (instead of write-after
+-read) for the last n−1 ones while onl
+y introducing a small penalty of an extr
+a network RTT (round-trip time) to the f
+irst one. Evaluation results show that P
+ARIX remarkably outperforms state-of-the
+-art PL schemes in partial write perform
+ance.";
+"USENIX"->"54";
+"54"->"E-Team: Practical Energy Accounting for 
+Multi-Core Systems";
+"54"->"Till Smejkal and Marcus Hähnel, TU Dres
+den; Thomas Ilsche, Center for Informati
+on Services and High Performance Computi
+ng (ZIH) Technische Universität Dresde
+n; Michael Roitzsch, TU Dresden; Wolfgan
+g E. Nagel, Center for Information Servi
+ces and High Performance Computing (ZIH)
+ Technische Universität Dresden; Herma
+nn Härtig, TU Dresden";
+"54"->"Energy-based billing as well as energy-e
+fficient software require accurate knowl
+edge of energy consumption. Model-based 
+energy accounting and external measureme
+nt hardware are the main methods to obta
+in energy data, but cost and the need fo
+r frequent recalibration have impeded th
+eir large-scale adoption. Running Averag
+e Power Limit (RAPL) by Intel® enables 
+non-intrusive, off-the-shelf energy moni
+toring, but only on a per-socket level. 
+To enable apportioning of energy to indi
+vidual applications we present E-Team, a
+ non-intrusive, scheduler-based, easy-to
+-use energy-accounting mechanism. By lev
+eraging RAPL, our method can be used on 
+any Intel system built after 2011 withou
+t the need for external infrastructure, 
+application modification, or model calib
+ration. E-Team allows starting and stopp
+ing measurements at arbitrary points in 
+time while maintaining a low performance
+ overhead. E-Team provides high accuracy
+, compared to external instrumentation, 
+with an error of less than 3:5 %.";
+"USENIX"->"55";
+"55"->"Scalable NUMA-aware Blocking Synchroniza
+tion Primitives";
+"55"->"Sanidhya Kashyap, Changwoo Min, and Taes
+oo Kim, Georgia Institute of Technology";
+"55"->"Application scalability is a critical as
+pect to efficiently use NUMA machines wi
+th many cores. To achieve that, various 
+techniques ranging from task placement t
+o data sharding are used in practice. Ho
+wever, from the perspective of an operat
+ing system, these techniques often do no
+t work as expected because various subsy
+stems in the OS interact and share data 
+structures among themselves, resulting i
+n scalability bottlenecks. Although curr
+ent OSes attempt to tackle this problem 
+by introducing a wide range of synchroni
+zation primitives such as spinlock and m
+utex, the widely used synchronization me
+chanisms are not designed to handle both
+ under- and over-subscribed scenarios in
+ a scalable fashion. In particular, the 
+current blocking synchronization primiti
+ves that are designed to address both sc
+enarios are NUMA oblivious, meaning that
+ they suffer from cache-line contention 
+in an undersubscribed situation, and eve
+n worse, inherently spur long scheduler 
+intervention, which leads to sub-optimal
+ performance in an over-subscribed situa
+tion.In this work, we present several de
+sign choices to implement scalable block
+ing synchronization primitives that can 
+address both under- and over-subscribed 
+scenarios. Such design decisions include
+ memory-efficient NUMA-aware locks (favo
+rable for deployment) and scheduling-awa
+re, scalable parking and wake-up strateg
+ies. To validate our design choices, we 
+implement two new blocking synchronizati
+on primitives, which are variants of mut
+ex and read-write semaphore in the Linux
+ kernel. Our evaluation shows that these
+ locks can scale real-world applications
+ by 1.2–1.6× and some of the file sys
+tem operations up to 4.7× in both under
+- and over-subscribed scenarios. Moreove
+r, they use 1.5–10× less memory than 
+the state-of- the-art NUMA-aware locks o
+n a 120-core machine.";
+"USENIX"->"56";
+"56"->"StreamBox: Modern Stream Processing on a
+ Multicore Machine";
+"56"->"Hongyu Miao and Heejin Park, Purdue ECE;
+ Myeongjae Jeon and Gennady Pekhimenko, 
+Microsoft Research; Kathryn S. McKinley,
+ Google; Felix Xiaozhu Lin, Purdue ECE";
+"56"->"Stream analytics on real-time events has
+ an insatiable demand for throughput and
+ latency. Its performance on a single ma
+chine is central to meeting this demand,
+ even in a distributed system. This pape
+r presents a novel stream processing eng
+ine called StreamBox that exploits the p
+arallelism and memory hierarchy of moder
+n multicore hardware. StreamBox executes
+ a pipeline of transforms over records t
+hat may arrive out-of-order. As records 
+arrive, it groups the records into order
+ed epochs delineated by watermarks. A wa
+termark guarantees no subsequent record’
+s event timestamp will precede it.Our 
+contribution is to produce and manage ab
+undant parallelism by generalizing out-o
+f-order record processing within each ep
+och to out-of-order epoch processing and
+ by dynamically prioritizing epochs to o
+ptimize latency. We introduce a data str
+ucture called cascading containers, whic
+h dynamically manages concurrency and de
+pendences among epochs in the transform 
+pipeline. StreamBox creates sequential m
+emory layout of records in epochs and st
+eers them to optimize NUMA locality. On 
+a 56-core machine, StreamBox processes r
+ecords up to 38 GB/sec (38M Records/sec)
+ with 50 ms latency.";
+"USENIX"->"57";
+"57"->"Everything you always wanted to know abo
+ut multicore graph processing but were a
+fraid to ask";
+"57"->"Jasmina Malicevic, Baptiste Lepers and W
+illy Zwaenepoel, EPFLAwarded Best Paper!";
+"57"->"Graph processing systems are used in a w
+ide variety of fields, ranging from biol
+ogy to social networks, and a large numb
+er of such systems have been described i
+n the recent literature. We perform a sy
+stematic comparison of various technique
+s proposed to speed up in-memory multico
+re graph processing. In addition, we tak
+e an end-to-end view of execution time, 
+including not only algorithm execution t
+ime, but also pre-processing time and th
+e time to load the graph input data from
+ storage.More specifically, we study var
+ious data structures to represent the gr
+aph in memory, various approaches to pre
+-processing and various ways to structur
+e the graph computation. We also investi
+gate approaches to improve cache localit
+y, synchronization, and NUMA-awareness. 
+In doing so, we take our inspiration fro
+m a number of graph processing systems, 
+and implement the techniques they propos
+e in a single system. We then selectivel
+y enable different techniques, allowing 
+us to assess their benefits in isolation
+ and independent of unrelated implementa
+tion considerations.Our main observation
+ is that the cost of pre-processing in m
+any circumstances dominates the cost of 
+algorithm execution, calling into questi
+on the benefits of proposed algorithmic 
+optimizations that rely on extensive pre
+processing. Equally surprising, using ra
+dix sort turns out to be the most effici
+ent way of pre-processing the graph inpu
+t data into adjacency lists, when the gr
+aph input data is already in memory or i
+s loaded from fast storage. Furthermore,
+ we adapt a technique developed for out-
+of-core graph processing, and show that 
+it significantly improves cache locality
+. Finally, we demonstrate that NUMA-awar
+eness and its attendant pre-processing c
+osts are beneficial only on large machin
+es and for certain algorithms.";
+"USENIX"->"58";
+"58"->"Graphene-SGX: A Practical Library OS for
+ Unmodified Applications on SGX";
+"58"->"Chia-Che Tsai, Stony Brook University; D
+onald E. Porter, University of North Car
+olina at Chapel Hill and Fortanix; Mona 
+Vij, Intel Corporation";
+"58"->"Intel SGX hardware enables applications 
+to protect themselves from potentially-m
+alicious OSes or hypervisors. In cloud c
+omputing and other systems, many users a
+nd applications could benefit from SGX. 
+Unfortunately, current applications will
+ not work out-of-the-box on SGX. Althoug
+h previous work has shown that a library
+ OS can execute unmodified applications 
+on SGX, a belief has developed that a li
+brary OS will be ruinous for performance
+ and TCB size, making application code m
+odification an implicit prerequisite to 
+adopting SGX.This paper demonstrates tha
+t these concerns are exaggerated, and th
+at a fully-featured library OS can rapid
+ly deploy unmodified applications on SGX
+ with overheads comparable to applicatio
+ns modified to use “shim” layers. We
+ present a port of Graphene to SGX, as w
+ell as a number of improvements to make 
+the security benefits of SGX more usable
+, such as integrity support for dynamica
+lly-loaded libraries, and secure multi-p
+rocess support. Graphene-SGX supports a 
+wide range of unmodified applications, i
+ncluding Apache, GCC, and the R interpre
+ter. The performance overheads of Graphe
+ne- SGX range from matching a Linux proc
+ess to less than 2× in most single-proc
+ess cases; these overheads are largely a
+ttributable to current SGX hardware or m
+issed opportunities to optimize Graphene
+ internals, and are not necessarily fund
+amental to leaving the application unmod
+ified. Graphene-SGX is open-source and h
+as been used concurrently by other group
+s for SGX research.";
+"USENIX"->"59";
+"59"->"PrivApprox: Privacy-Preserving Stream An
+alytics";
+"59"->"Do Le Quoc and Martin Beck, TU Dresden; 
+Pramod Bhatotia, The University of Edinb
+urgh; Ruichuan Chen, Nokia Bell Labs; Ch
+ristof Fetzer and Thorsten Strufe, TU Dr
+esden";
+"59"->"How to preserve users’ privacy while s
+upporting high-utility analytics for low
+-latency stream processing?To answer thi
+s question: we describe the design, impl
+ementation and evaluation of PRIVAPPROX,
+ a data analytics system for privacy-pre
+serving stream processing. PRIVAPPROX pr
+ovides three important properties: (i) P
+rivacy: zero-knowledge privacy guarantee
+ for users, a privacy bound tighter than
+ the state-of-the-art differential priva
+cy; (ii) Utility: an interface for data 
+analysts to systematically explore the t
+rade-offs between the output accuracy (w
+ith error estimation) and the query exec
+ution budget; (iii) Latency: near real-t
+ime stream processing based on a scalabl
+e “synchronization-free” distributed
+ architecture.The key idea behind our ap
+proach is to marry two techniques togeth
+er, namely, sampling (used for approxima
+te computation) and randomized response 
+(used for privacy-preserving analytics).
+ The resulting marriage is complementary
+—it achieves stronger privacy guarante
+es, and also improves the performance fo
+r stream analytics.";
+"USENIX"->"60";
+"60"->"Mercury: Bandwidth-Effective Prevention 
+of Rollback Attacks Against Community Re
+positories";
+"60"->"Trishank Karthik Kuppusamy, Vladimir Dia
+z, and Justin Cappos, New York Universit
+y";
+"60"->"A popular community repository such as D
+ocker Hub, PyPI, or RubyGems distributes
+ tens of thousands of software projects 
+to millions of users. The large number o
+f projects and users make these reposito
+ries attractive targets for exploitation
+. After a repository compromise, a malic
+ious party can launch a number of attack
+s on unsuspecting users, including rollb
+ack attacks that revert projects to obso
+lete and vulnerable versions. Unfortunat
+ely, due to the rapid rate at which pack
+ages are updated, existing techniques th
+at protect against rollback attacks woul
+d cause each user to download 2–3 time
+s the size of an average package in meta
+data each month, making them impractical
+ to deploy.In this work, we develop a sy
+stem called Mercury that uses a novel te
+chnique to compactly disseminate version
+ information while still protecting agai
+nst rollback attacks. Due to a different
+ technique for dealing with key revocati
+on, users are protected from rollback at
+tacks, even if the software repository i
+s compromised. This technique is bandwid
+th-efficient, especially when delta comp
+ression is used to transmit only the dif
+ferences between previous and current li
+sts of version information. An analysis 
+we performed for the Python community sh
+ows that once Mercury is deployed on PyP
+I, each user will only download metadata
+ each month that is about 3.5% the size 
+of an average package. Our work has been
+ incorporated into the latest versions o
+f TUF, which is being integrated by Hask
+ell, OCaml, RubyGems, Python, and CoreOS
+, and is being used in production by LEA
+P, Flynn, and Docker.";
+"USENIX"->"61";
+"61"->"CAB-Fuzz: Practical Concolic Testing Tec
+hniques for COTS Operating Systems";
+"61"->"Su Yong Kim, The Affiliated Institute of
+ ETRI; Sangho Lee, Insu Yun, and Wen Xu,
+ Georgia Tech; Byoungyoung Lee, Purdue U
+niversity; Youngtae Yun, The Affiliated 
+Institute of ETRI; Taesoo Kim, Georgia T
+ech";
+"61"->"Discovering the security vulnerabilities
+ of commercial off-the-shelf (COTS) oper
+ating systems (OSes) is challenging beca
+use they not only are huge and complex, 
+but also lack detailed debug information
+. Concolic testing, which generates all 
+feasible inputs of a program by using sy
+mbolic execution and tests the program w
+ith the generated inputs, is one of the 
+most promising approaches to solve this 
+problem. Unfortunately, the state-of-the
+-art concolic testing tools do not scale
+ well for testing COTS OSes because of s
+tate explosion. Indeed, they often fail 
+to find a single bug (or crash) in COTS 
+OSes despite their long execution time.I
+n this paper, we propose CAB-FUZZ (Conte
+xt-Aware and Boundary-focused), a practi
+cal concolic testing tool to quickly exp
+lore interesting paths that are highly l
+ikely triggering real bugs without debug
+ information. First, CAB-FUZZ prioritize
+s the boundary states of arrays and loop
+s, inspired by the fact that many vulner
+abilities originate from a lack of prope
+r boundary checks. Second, CAB-FUZZ expl
+oits real programs interacting with COTS
+ OSes to construct proper contexts to ex
+plore deep and complex kernel states wit
+hout debug information. We applied CAB-F
+UZZ to Windows 7 and Windows Server 2008
+ and found 21 undisclosed unique crashes
+, including two local privilege escalati
+on vulnerabilities (CVE- 2015-6098 and C
+VE-2016-0040) and one information disclo
+sure vulnerability in a cryptography dri
+ver (CVE- 2016-7219). CAB-FUZZ found vul
+nerabilities that are non-trivial to dis
+cover; five vulnerabilities have existed
+ for 14 years, and we could trigger them
+ even in the initial version of Windows 
+XP (August 2001).";
+"USENIX"->"62";
+"62"->"Log-Structured Non-Volatile Main Memory";
+"62"->"Qingda Hu, Tsinghua University; Jinglei 
+Ren and Anirudh Badam, Microsoft Researc
+h; Jiwu Shu, Tsinghua University; Thomas
+ Moscibroda, Microsoft Research";
+"62"->"Emerging non-volatile main memory (NVMM)
+ unlocks the performance potential of ap
+plications by storing persistent data in
+ the main memory. Such applications requ
+ire a lightweight persistent transaction
+al memory (PTM) system, instead of a hea
+vyweight filesystem or database, to have
+ fast access to data. In a PTM system, t
+he memory usage, both capacity and bandw
+idth, plays a key role in dictating perf
+ormance and efficiency. Existing memory 
+management mechanisms for PTMs generate 
+high memory fragmentation, high write tr
+affic and a large number of persist barr
+iers, since data is first written to a l
+og and then to the main data store.In th
+is paper, we present a log-structured NV
+MM system that not only maintains NVMM i
+n a compact manner but also reduces the 
+write traffic and the number of persist 
+barriers needed for executing transactio
+ns. All data allocations and modificatio
+ns are appended to the log which becomes
+ the location of the data. Further, we a
+ddress a unique challenge of log-structu
+red memory management by designing a tre
+e-based address translation mechanism wh
+ere access granularities are flexible an
+d different from allocation granularitie
+s. Our results show that the new system 
+enjoys up to 89.9% higher transaction th
+roughput and up to 82.8% lower write tra
+ffic than a traditional PTM system.";
+"USENIX"->"63";
+"63"->"Soft Updates Made Simple and Fast on Non
+-volatile Memory";
+"63"->"Mingkai Dong and Haibo Chen, Institute o
+f Parallel and Distributed Systems, Shan
+ghai Jiao Tong University";
+"63"->"Fast, byte-addressable NVM promises near
+ cache latency and near memory bus throu
+ghput for file system operations. Howeve
+r, unanticipated cache line eviction may
+ lead to disordered metadata update and 
+thus existing NVM file systems (NVMFS) u
+se synchronous cache flushes to ensure c
+onsistency, which extends critical path 
+latency.In this paper, we revisit soft u
+pdates, an intriguing idea that eliminat
+es most synchronous metadata updates thr
+ough delayed writes and dependency track
+ing, in the context of NVMFS. We show th
+at on one hand byte-addressability of NV
+M significantly simplifies dependency tr
+acking and enforcement by allowing bette
+r directory organization and closely mat
+ching the per-pointer dependency trackin
+g of soft updates. On the other hand, pe
+r-cache-line failure atomicity of NVM ca
+nnot ensure the correctness of soft upda
+tes, which relies on block write atomici
+ty; page cache, which is necessary for d
+ual views in soft updates, becomes ineff
+icient due to double writes and duplicat
+ed metadata. To guarantee the correctnes
+s and consistency without synchronous ca
+che flushes and page cache, we propose p
+ointer-based dual views, which shares mo
+st data structures but uses different po
+inters in different views, to allow dela
+yed persistency and eliminate file syste
+m checking after a crash. In this way, o
+ur system, namely SoupFS, significantly 
+shortens the critical path latency by de
+laying almost all synchronous cache flus
+hes.We have implemented SoupFS as a POSI
+X-compliant file system for Linux and ev
+aluated it against state-of-the-art NVMF
+S like PMFS and NOVA. Performance result
+s show that SoupFS can have notably lowe
+r latency and modestly higher throughput
+ compared to existing NVMFS.";
+"USENIX"->"64";
+"64"->"SmartMD: A High Performance Deduplicatio
+n Engine with Mixed Pages";
+"64"->"Fan Guo, University of Science and Techn
+ology of China; Yongkun Li, University o
+f Science and Technology of China; Colla
+borative Innovation Center of High Perfo
+rmance Computing, NUDT; Yinlong Xu, Univ
+ersity of Science and Technology of Chin
+a; Anhui Province Key Laboratory of High
+ Performance Computing, USTC; Song Jiang
+, University of Texas, Arlington; John C
+. S. Lui, The Chinese University of Hong
+ Kong";
+"64"->"In hypervisor-based virtualization envir
+onments, translation lookaside buffers (
+TLBs) misses may induce two-dimensional 
+page table walks, which may incur a long
+ access latency, and this issue becomes 
+worse with ever increasing memory capaci
+ty. To reduce the overhead of TLB misses
+, large pages (e.g., 2M-pages) are widel
+y supported in modern hardware platforms
+ to reduce the number of page table entr
+ies. However, memory management with lar
+ge pages can be inefficient in deduplica
+tion, leading to low utilization of memo
+ry, which is a precious resource for a v
+ariety of applications.To simultaneously
+ enjoy benefits of high performance by a
+ccessing memory with large pages (e.g., 
+2M-pages) and high deduplication rate by
+ managing memory with base pages (e.g., 
+4K-pages), we propose Smart Memory Dedup
+lciation, or SmartMD in short, which is 
+an adaptive and efficient management sch
+eme for mixed-page memory. Specifically,
+ we propose two lightweight schemes to a
+ccurately monitor pages’ access freque
+ncy and repetition rate, and present a d
+ynamic and adaptive conversion scheme to
+ selectively split or reconstruct large 
+pages. We implement a prototype system a
+nd conduct extensive experiments with va
+rious workloads. Experiment results show
+ that SmartMD can simultaneously achieve
+ high access performance similar to syst
+ems using large pages, and achieves a de
+duplication rate similar to that applyin
+g aggressive deduplication scheme (i.e.,
+ KSM) at the same time on base pages.";
+"USENIX"->"65";
+"65"->"Elastic Memory Management for Cloud Data
+ Analytics";
+"65"->"Jingjing Wang and Magdalena Balazinska, 
+University of Washington";
+"65"->"We develop an approach for the automatic
+ and elastic management of memory in sha
+red clusters executing data analytics ap
+plications. Our approach, called Elastic
+Mem, comprises a technique for dynamical
+ly changing memory limits in Java virtua
+l machines, models to predict memory usa
+ge and garbage collection cost, and a sc
+heduling algorithm that dynamically real
+locates memory between applications. Exp
+eriments with our prototype implementati
+on show that our approach outperforms st
+atic memory allocation leading to fewer 
+query failures when memory is scarce, up
+ to 80% lower garbage collection overhea
+ds, and up to 30% lower query times when
+ memory is abundant.";
+"USENIX"->"66";
+"66"->"Improving File System Performance of Mob
+ile Storage Systems Using a Decoupled De
+fragmenter";
+"66"->"Sangwook Shane Hahn, Seoul National Univ
+ersity; Sungjin Lee, Daegu Gyeongbuk Ins
+titute of Science and Technology; Cheng 
+Ji, City University of Hong Kong; Li-Pin
+ Chang, National Chiao-Tung University; 
+Inhyuk Yee, Seoul National University; L
+iang Shi, Chongqing University; Chun Jas
+on Xue, City University of Hong Kong; Ji
+hong Kim, Seoul National University";
+"66"->"In this paper, we comprehensively invest
+igate the file fragmentation problem on 
+mobile flash storage. From our evaluatio
+n study with real Android smartphones, w
+e observed two interesting points on fil
+e fragmentation on flash storage. First,
+ defragmentation on mobile flash storage
+ is essential for high I/O performance o
+n Android smartphones because file fragm
+entation, which is a recurring problem (
+even after defragmentation), can signifi
+cantly degrade I/O performance. Second, 
+file fragmentation affects flash storage
+ quite differently than HDDs. When files
+ are fragmented on flash storage, the lo
+gical fragmentation and the physical fra
+gmentation are decoupled and a performan
+ce degradation mostly comes from logical
+ fragmentation. Motivated by our observa
+tions, we propose a novel defragger, jan
+us defragger (janusd), which supports tw
+o defraggers, janusdL for a logical defr
+agger and janusdP for a physical defragg
+er. JanusdL, which takes advantage of fl
+ash storage’s internal logical to phys
+ical mapping table, supports logical def
+ragmentation without data copies. Janusd
+L is very effective for most fragmented 
+files while not sacrificing the flash li
+fetime. JanusdP, which is useful for phy
+sically fragmented files but requires da
+ta copies, is invoked only when absolute
+ly necessary. By adaptively selecting ja
+nusdL and janusdP, janusd achieves the e
+ffect of full file defragmentation witho
+ut reducing the flash lifetime. Our expe
+rimental results show that janusd can ac
+hieve at least the same level of I/O per
+formance improvement as e4defrag without
+ affecting the flash lifetime, thus maki
+ng janusd an attractive defragmentation 
+solution for mobile flash storage.";
+"USENIX"->"67";
+"67"->"Octopus: an RDMA-enabled Distributed Per
+sistent Memory File System";
+"67"->"Youyou Lu, Jiwu Shu, and Youmin Chen, Ts
+inghua University; Tao Li, University of
+ Florida";
+"67"->"Non-volatile memory (NVM) and remote dir
+ect memory access (RDMA) provide extreme
+ly high performance in storage and netwo
+rk hardware. However, existing distribut
+ed file systems strictly isolate file sy
+stem and network layers, and the heavy l
+ayered software designs leave high-speed
+ hardware under-exploited. In this paper
+, we propose an RDMA-enabled distributed
+ persistent memory file system, Octopus,
+ to redesign file system internal mechan
+isms by closely coupling NVM and RDMA fe
+atures. For data operations, Octopus dir
+ectly accesses a shared persistent memor
+y pool to reduce memory copying overhead
+, and actively fetches and pushes data a
+ll in clients to re-balance the load bet
+ween the server and network. For metadat
+a operations, Octopus introduces self-id
+entified RPC for immediate notification 
+between file systems and networking, and
+ an efficient distributed transaction me
+chanism for consistency. Evaluations sho
+w that Octopus achieves nearly the raw b
+andwidth for large I/Os and orders of ma
+gnitude better performance than existing
+ distributed file systems.";
+"USENIX"->"68";
+"68"->"iJournaling: Fine-Grained Journaling for
+ Improving the Latency of Fsync System C
+all";
+"68"->"Daejun Park and Dongkun Shin, Sungkyunkw
+an University, Korea";
+"68"->"For data durability, many applications r
+ely on synchronous operations such as an
+ fsync() system call. However, latency-s
+ensitive synchronous operations can be d
+elayed under the compound transaction sc
+heme of the current journaling technique
+. Because a compound transaction include
+s irrelevant data and metadata, as well 
+as the data and metadata of fsynced file
+, the latency of an fsync call can be un
+expectedly long. In this paper, we first
+ analyze various factors that may delay 
+an fsync operation, and propose a novel 
+hybrid journaling technique, called ijou
+rnaling, which journals only the corresp
+onding file-level transaction for an fsy
+nc call, while recording a normal journa
+l transaction during periodic journaling
+. The file-level transaction journal has
+ only the related metadata updates of th
+e fsynced file. By removing several fact
+ors detrimental to fsync latency, the pr
+oposed technique can reduce the fsync la
+tency, mitigate the interference between
+ fsync-intensive threads, and provide hi
+gh manycore scalability. Experiments usi
+ng a smartphone and a desktop computer s
+howed significant improvements in fsync 
+latency through the use of ijournaling.";
+"USENIX"->"69";
+"69"->"Scaling Distributed File Systems in Reso
+urce-Harvesting Datacenters";
+"69"->"Pulkit A. Misra, Duke University; Íñig
+o Goiri, Jason Kace and Ricardo Bianchin
+i, Microsoft Research";
+"69"->"Datacenters can use distributed file sys
+tems to store data for batch processing 
+on the same servers that run latency-cri
+tical services. Taking advantage of this
+ storage capacity involves minimizing in
+terference with the co-located services,
+ while implementing user-friendly, effic
+ient, and scalable file system access. U
+nfortunately, current systems fail one o
+r more of these requirements, and must b
+e manually partitioned across independen
+t subclusters. Thus, in this paper, we i
+ntroduce techniques for automatically an
+d transparently scaling such file system
+s to entire resource-harvesting datacent
+ers. We create a layer of software in fr
+ont of the existing metadata managers, a
+ssign servers to subclusters to minimize
+ interference and data movement, and sma
+rtly migrate data across subclusters in 
+the background. We implement our techniq
+ues in HDFS, and evaluate them using sim
+ulation of 10 production datacenters and
+ a real 4k-server deployment. Our result
+s show that our techniques produce high 
+file access performance, and high data d
+urability and availability, while migrat
+ing a limited amount of data. We recentl
+y deployed our system onto 30k servers i
+n Bing’s datacenters, and discuss less
+ons from this deployment.";
+"USENIX";
+"33";
+"37";
+"40";
+"66";
+"3";
+"28";
+"46";
+"63";
+"64";
+"2";
+"15";
+"39";
+"47";
+"58";
+"57";
+"67";
+"5";
+"19";
+"23";
+"45";
+"48";
+"13";
+"25";
+"44";
+"65";
+"52";
+"55";
+"14";
+"21";
+"22";
+"30";
+"34";
+"35";
+"51";
+"8";
+"10";
+"11";
+"12";
+"24";
+"42";
+"49";
+"60";
+"68";
+"69";
+"18";
+"27";
+"41";
+"43";
+"53";
+"0";
+"29";
+"36";
+"38";
+"62";
+"1";
+"7";
+"16";
+"17";
+"50";
+"4";
+"6";
+"9";
+"20";
+"32";
+"56";
+"31";
+"59";
+"26";
+"54";
+"61";
+}
